@@ -1,12 +1,9 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { Link, Route, Switch, Redirect } from "react-router-dom";
+import "./App.css";
 
 function App() {
-  return (
-    <div className="App">
-      
-    </div>
-  );
+  return <div className="App" />;
 }
 
 export default App;

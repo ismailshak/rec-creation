@@ -1,6 +1,7 @@
 ### Responsibilities:
 
 Back End: [Jordan]
+
 - Finding data (creating initial json)
 - Setting up schemas
 - Seeding
@@ -10,6 +11,7 @@ Back End: [Jordan]
 - Deploying [Ismail]
 
 Font End:
+
 - Components: [Sean] (includes switch, link, routes)
   - App
   - Header
@@ -24,34 +26,39 @@ Font End:
 - CSS [Ismail]
 - Deploying [Ismail]
 
-Bonus: 
+Bonus:
+
 - Authentication
 - Add user page (list of events, fav games)
 
-
 ### Schedule
 
-By Tuesday Morning: 
+By Tuesday Morning:
+
 - Initial Data
 - Set up environment (create-react-app + dependencies)
 - Initial component layouts
 
 By Wednesday morning:
+
 - Seeded data
 - Routes/Controller
 - Index
 - Deploy backend
 
 By Thursday morning:
+
 - CSS
 - Grid component
 
-By end of Thursday: 
+By end of Thursday:
+
 - CRUD Routes
 - Fully deployed MERN
 - Attempt bonuses
 
 Friday Morning tasks:
+
 - Backend API (apidoc?)
 - Clean up README
 - User stories
