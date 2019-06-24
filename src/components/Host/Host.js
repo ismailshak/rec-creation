@@ -5,7 +5,22 @@ class Host extends Component {
   render() {
     return (
       <div>
-        <h1>Host!</h1>
+        <h3>Host an Event! Fill out the form belwo.</h3>
+        <form>
+          <select className="Game">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          <input type="text" name="location" />
+          <select className="Type">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+          </select>
+          <input type="text" name="participants" />
+          <input type="submit" value="Submit" />
+        </form>
       </div>
     );
   }
