@@ -10,7 +10,7 @@ We broke down our models into three categories. A game model, an event model and
 
 ## ERD
 
-![ERD diagram](https://github.com/ismailshak/rec-creation/blob/master/planning/img/models.png "ERD Diagram")
+![ERD diagram](https://github.com/ismailshak/rec-creation/blob/master/planning/img/API%20Flowchart%20Project%203.png "ERD Diagram")
 
 The Entities that we chose for our ERD were User, Events, Games, and the option to add in Supplies for the Games.
 
