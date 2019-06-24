@@ -50,11 +50,11 @@ By Thursday morning:
 
 - CSS
 - Grid component
+- CRUD Route
+- Fully deployed MERN
 
 By end of Thursday:
-
-- CRUD Routes
-- Fully deployed MERN
+- Catch up on late work
 - Attempt bonuses
 
 Friday Morning tasks:
