@@ -21,3 +21,7 @@ The Users can have one or many events by either hosting or participating in the 
 Events can only have one game but many users as host or participants
 
 Games can have none or multiple events.
+
+## Wireframe
+
+https://wireframe.cc/pro/pp/79ee610b6256871
