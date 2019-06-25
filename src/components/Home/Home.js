@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from 'react-router-dom'
 import "./Home.css";
-import Popular from '../Popular'
+import Popular from '../Popular/Popular'
 
 class Home extends Component {
   render() {
