@@ -14,15 +14,21 @@ import axios from "axios";
 import Popular from "../Popular/Popular";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      games: []
+    };
+  }
   componentDidMount() {
-    const url = "";
+    const url = "https://rec-creation-api.herokuapp.com/api/games";
 
     axios.get(url).then(res => {
-      let exercise = res.data;
-      this.setState({ exercise: exercise });
+      this.setState({ games: res.data });
     });
   }
   render() {
+    console.log(this.state.games);
     return (
       <div className="App">
         <nav className="nav-bar">
@@ -50,7 +56,11 @@ class App extends Component {
         <main>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/search" exact component={Search} />
+            <Route
+              path="/search"
+              exact
+              render={props => <Search games={this.state.games} />}
+            />
             <Route path="/host" exact component={Host} />
             <Route path="/game" exact component={Game} />
             <Route path="/grid" exact component={Grid} />
