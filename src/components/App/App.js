@@ -53,11 +53,12 @@ class App extends Component {
         </nav>
         <main>
           <Switch>
-            <Route
+            {this.state.games.length !== 0 && <Route
               path="/"
               exact
               render={props => <Home games={this.state.games} />}
-            />
+            />}
+            
             <Route
               path="/search"
               exact

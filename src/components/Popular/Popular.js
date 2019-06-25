@@ -90,6 +90,7 @@ class Popular extends Component {
             />
             Item 6
           </div>
+          
         </Carousel>
       </div>
     );
