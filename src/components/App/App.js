@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import "./App.css";
-import logo from './trophy.png'
+import logo from "./trophy.png";
 import Home from "../Home/Home";
 import Host from "../Host/Host";
 import Game from "../Game/Game";
@@ -9,6 +9,8 @@ import Event from "../Event/Event";
 import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
+// import "../loader";
+// import Popular from "../Popular/Popular";
 
 class App extends Component {
   render() {
@@ -46,6 +48,9 @@ class App extends Component {
             <Route path="/event" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
           </Switch>
+          {/* <div className="Popular">
+            <Popular />
+          </div> */}
         </main>
       </div>
     );
