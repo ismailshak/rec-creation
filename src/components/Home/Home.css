@@ -1,35 +1,32 @@
 .Home {
-    color: white;
-    /* margin: 5rem 0 0 10rem; */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  color: white;
+  /* margin: 5rem 0 0 10rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Home h1 {
-    font-weight: 800;
-    font-size: 3rem;
+  font-weight: 800;
+  font-size: 3rem;
 }
 
 .Home p {
-    font-weight: 100
+  font-weight: 100;
 }
 
 .home-info-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding-left: 10rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 10rem;
 }
 
 .home-text-container {
-
 }
 
 .home-buttons-container {
-    display: flex;
-    justify-content: center;
-    margin: 2rem 0;
-
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }

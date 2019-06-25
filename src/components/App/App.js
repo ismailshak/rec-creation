@@ -11,7 +11,7 @@ import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
 import axios from "axios";
 // import "../loader";
-// import Popular from "../Popular/Popular";
+import Popular from "../Popular/Popular";
 
 class App extends Component {
   componentDidMount() {
