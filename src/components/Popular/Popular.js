@@ -19,9 +19,8 @@ const responsive = {
 };
 
 class Popular extends Component {
-
   render() {
-    return(
+    return (
       <div className="popular">
         <p>Popular</p>
         <Carousel
@@ -43,19 +42,58 @@ class Popular extends Component {
           dotListClass="custom-dot-list-style"
           itemClass="carousel-item-padding-40-px"
         >
-          <div>Item 1</div>
-          <div>Item 2</div>
-          <div>Item 3</div>
-          <div>Item 5</div>
-          <div>Item 6</div>
-          <div>Item 7</div>
-          <div>Item 8</div>
-          <div>Item 9</div>
+          <div>
+            <img
+              src={this.props.games[0].image}
+              alt="item 1"
+              className="nav-logo"
+            />
+            Item 1
+          </div>
+          <div>
+            <img
+              src={this.props.games[1].image}
+              alt="item 2"
+              className="nav-logo"
+            />
+            Item 2
+          </div>
+          <div>
+            <img
+              src={this.props.games[2].image}
+              alt="item 3"
+              className="nav-logo"
+            />
+            Item 3
+          </div>
+          <div>
+            <img
+              src={this.props.games[3].image}
+              alt="item 4"
+              className="nav-logo"
+            />
+            Item 4
+          </div>
+          <div>
+            <img
+              src={this.props.games[4].image}
+              alt="item 5"
+              className="nav-logo"
+            />
+            Item 5
+          </div>
+          <div>
+            <img
+              src={this.props.games[5].image}
+              alt="item 6"
+              className="nav-logo"
+            />
+            Item 6
+          </div>
         </Carousel>
       </div>
-    )
+    );
   }
-  
 }
 
 export default Popular;
