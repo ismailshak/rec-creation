@@ -1,33 +1,42 @@
 import React, { Component } from "react";
 import "./Popular.css";
+import $ from "jquery";
 
 class Popular extends Component {
+  componentDidMount() {
+    // this.$el = $(this.el);
+    // this.$el.somePlugin();
+    $("#popularCarousel").carousel({
+      interval: 10000
+    });
 
-$('#popularCarousel').carousel({
-  interval: 10000
-})
-
-$('.carousel .carousel-item').each(function(){
-    var next = $(this).next();
-    if (!next.length) {
-    next = $(this).siblings(':first');
-    }
-    next.children(':first-child').clone().appendTo($(this));
-    
-    for (var i=0;i<2;i++) {
-        next=next.next();
-        if (!next.length) {
-        	next = $(this).siblings(':first');
-      	}
-        
-        next.children(':first-child').clone().appendTo($(this));
+    $(".carousel .carousel-item").each(function() {
+      var next = $(this).next();
+      if (!next.length) {
+        next = $(this).siblings(":first");
       }
-});
+      next
+        .children(":first-child")
+        .clone()
+        .appendTo($(this));
 
+      for (var i = 0; i < 2; i++) {
+        next = next.next();
+        if (!next.length) {
+          next = $(this).siblings(":first");
+        }
+
+        next
+          .children(":first-child")
+          .clone()
+          .appendTo($(this));
+      }
+    });
+  }
 
   render() {
     return (
-      <div className="popular-container">
+      <div className="popular-container" ref={el => (this.el = el)}>
         <div class="container text-center my-3">
           <h2>Popular</h2>
           <div class="row mx-auto my-auto">
