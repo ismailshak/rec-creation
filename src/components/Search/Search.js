@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Search.css";
 import Grid from "../Grid/Grid";
 import axios from 'axios'
@@ -25,7 +25,7 @@ class Search extends Component {
 
   componentDidMount() {
     let url = "https://rec-creation-api.herokuapp.com/"
-    axios.get(url+"/api/events")
+    axios.get(url+"api/events")
       .then(res => {
         this.setState({events: res.data})
       })

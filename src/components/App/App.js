@@ -62,9 +62,9 @@ class App extends Component {
               render={props => <Search games={this.state.games} />}
             />
             <Route path="/host" exact component={Host} />
-            <Route path="/game" exact component={Game} />
+            <Route path="/game/:id" exact component={Game} />
             <Route path="/grid" exact component={Grid} />
-            <Route path="/event" exact component={Event} />
+            <Route path="/event/:id" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
           </Switch>
           {/* <div className="Popular">
