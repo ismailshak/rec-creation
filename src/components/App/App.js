@@ -9,8 +9,8 @@ import Event from "../Event/Event";
 import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
-import "../loader";
-import Popular from "../Popular/Popular";
+// import "../loader";
+// import Popular from "../Popular/Popular";
 
 class App extends Component {
   render() {
@@ -48,9 +48,9 @@ class App extends Component {
             <Route path="/event" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
           </Switch>
-          <div className="Popular">
+          {/* <div className="Popular">
             <Popular />
-          </div>
+          </div> */}
         </main>
       </div>
     );
