@@ -34,7 +34,7 @@ class App extends Component {
             <Link to="/">
               <img src={logo} alt="Logo" className="nav-logo" />
             </Link>
-            <span className="title">Rec|Creation</span>
+            <Link to="/"><span className="title">Rec|Creation</span></Link>
           </div>
           <div className="nav-buttons-container">
             <Link to="/search" className="nav-links">

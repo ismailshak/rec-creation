@@ -26,7 +26,7 @@ class Popular extends Component {
         <Carousel
           swipeable={false}
           draggable={false}
-          showDots={true}
+          showDots={false}
           responsive={responsive}
           ssr={true} // means to render carousel on server-side.
           slidesToSlide={1}
