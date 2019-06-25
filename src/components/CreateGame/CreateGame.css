@@ -1,0 +1,47 @@
+.Create {
+  color: white;
+  /* margin: 5rem 0 0 10rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Create h1 {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.Create p {
+  font-weight: 100;
+}
+
+.create-info-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 10rem;
+}
+
+.create-form {
+  display: grid;
+  background-color: whitesmoke;
+  color: black;
+  margin: 10px;
+  border: 100px;
+  padding: 20px;
+  width: 75%;
+  height: 75%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.create-text-container {
+}
+
+.create-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}

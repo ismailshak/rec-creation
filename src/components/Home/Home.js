@@ -26,7 +26,7 @@ class Home extends Component {
           </Link>
         </div>
 
-        <Popular />
+        <Popular games={this.props.games} />
       </div>
     );
   }

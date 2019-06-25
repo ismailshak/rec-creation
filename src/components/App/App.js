@@ -10,8 +10,6 @@ import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
 import axios from "axios";
-// import "../loader";
-import Popular from "../Popular/Popular";
 
 class App extends Component {
   constructor() {
@@ -27,8 +25,8 @@ class App extends Component {
       this.setState({ games: res.data });
     });
   }
+
   render() {
-    console.log(this.state.games);
     return (
       <div className="App">
         <nav className="nav-bar">
@@ -55,7 +53,11 @@ class App extends Component {
         </nav>
         <main>
           <Switch>
-            <Route path="/" exact component={Home} />
+            <Route
+              path="/"
+              exact
+              render={props => <Home games={this.state.games} />}
+            />
             <Route
               path="/search"
               exact
@@ -67,9 +69,6 @@ class App extends Component {
             <Route path="/event" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
           </Switch>
-          {/* <div className="Popular">
-            <Popular />
-          </div> */}
         </main>
       </div>
     );
