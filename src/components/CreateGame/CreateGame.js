@@ -24,7 +24,6 @@ class CreateGame extends Component {
         <form onSubmit={this.handleForm}>
           Name:
           <input type="text" name="name" />
-<<<<<<< HEAD
           Supplies Needed:
           <input type="text" name="supplies" placeholder="pen, paper, etc"/>
           Minimum Number of Players:
@@ -34,30 +33,6 @@ class CreateGame extends Component {
           Rules:
           <textarea name="rules" />
           {/* <input
-=======
-          <p>Supplies Needed:</p>
-          <input type="text" name="supplies" />
-          <p>Number of Players:</p>
-          <select id="players">
-            <option>2</option>
-            <option>4</option>
-            <option>6</option>
-            <option>8</option>
-            <option>10</option>
-            <option>12</option>
-            <option>14</option>
-            <option>16</option>
-            <option>18</option>
-            <option>20</option>
-          </select>
-          {/* <p>21+ ?</p>
-          yes
-          <input type="radio" id="yes" name="yes" value="yes" />
-          no
-          <input type="radio" id="no" name="no" value="no" /> */}
-          <p>Image:</p>
-          <input
->>>>>>> 5615d02fff5b36e9c01c6b16e9d50111744aa988
             type="file"
             id="avatar"
             name="avatar"
