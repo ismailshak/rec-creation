@@ -13,14 +13,23 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav>
-          <Link to="/">
-            <img src="Logo.png" alt="Home" />
-          </Link>
-
-          <Link to="../Search">Search</Link>
-          <Link to="../Host">Host</Link>
-          <Link to="../CreateGame">Submit Game</Link>
+        <nav className="nav-bar">
+          <div className="nav-logo-container">
+            <Link to="/">
+              <img src="Logo.png" alt="Home" className="nav-logo" />
+            </Link>
+          </div>
+          <div className="nav-buttons-container">
+            <Link to="../Search" className="nav-buttons">
+              Search
+            </Link>
+            <Link to="../Host" className="nav-buttons">
+              Host
+            </Link>
+            <Link to="../CreateGame" className="nav-buttons">
+              Submit Game
+            </Link>
+          </div>
         </nav>
         <main>
           <Switch>
