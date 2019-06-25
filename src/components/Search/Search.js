@@ -1,26 +1,44 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect, Link } from "react-router-dom";
 import "./Search.css";
-import Game from "../Game/Game";
-import Event from "../Event/Event";
 import Grid from "../Grid/Grid";
 
 class Search extends Component {
+  constructor() {
+    super()
+    this.state = {
+      whichInfo: "",
+    }
+  }
+
+  handleClick = (e) => {
+    if(e.target.innerText === "Games") {
+      this.setState({whichInfo: "games"})
+    } else {
+      this.setState({whichInfo: "events"})
+    }
+    
+  }
+
+  
+
   render() {
+
     return (
       <div>
-        <h1>Search!</h1>
-        <Link className="nav-buttons" to="/host">
-          Host
-        </Link>
-        <Link className="nav-buttons" to="/search">
-          Search
-        </Link>
-        <Switch>
-          <Redirect path="/Grid" exact component={Grid} />
-          <Route path="/Game" exact component={Game} />
-          <Route path="/Event" exact component={Event} />
-        </Switch>
+        <div className="search-info-container">
+          <h1>Search!</h1>
+          <Link className="nav-buttons" onClick={this.handleClick}>
+            Games
+          </Link>
+          <Link className="nav-buttons" onClick={this.handleClick}>
+            Events
+          </Link>
+        </div>
+        {this.state.whichInfo === "games" && <Grid data={this.state.whichInfo}/>}
+        {this.state.whichInfo === "events" && <Grid data={this.state.whichInfo}/>}
+        
+        
       </div>
     );
   }
