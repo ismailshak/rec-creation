@@ -5,7 +5,7 @@ class Grid extends Component {
   render() {
     return (
       <div>
-        <h3>{"List of our "+this.props.name}</h3>
+        <h3>{"List of our "+this.props.type}</h3>
         <input type="text" name="search" />
         <button type="button">search</button>
         <div>
