@@ -9,10 +9,19 @@ import Event from "../Event/Event";
 import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
+import axios from "axios";
 // import "../loader";
 // import Popular from "../Popular/Popular";
 
 class App extends Component {
+  componentDidMount() {
+    const url = "";
+
+    axios.get(url).then(res => {
+      let exercise = res.data;
+      this.setState({ exercise: exercise });
+    });
+  }
   render() {
     return (
       <div className="App">

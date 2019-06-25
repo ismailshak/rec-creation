@@ -24,11 +24,11 @@ class CreateGame extends Component {
             <option>18</option>
             <option>20</option>
           </select>
-          <p>21+ ?</p>
+          {/* <p>21+ ?</p>
           yes
           <input type="radio" id="yes" name="yes" value="yes" />
           no
-          <input type="radio" id="no" name="no" value="no" />
+          <input type="radio" id="no" name="no" value="no" /> */}
           <p>Image:</p>
           <input
             type="file"
