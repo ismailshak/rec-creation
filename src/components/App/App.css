@@ -1,6 +1,9 @@
+.App {
+    height: 100vh;
+}
 .nav-bar {
     background-color: white;
-    height: 20%;
+    height: 10%;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -29,10 +32,27 @@
 
 .nav-logo {
     width: 40px;
+    padding-right: 1rem;
 }
 
 .nav-buttons {
     height: 80%;
     background-color: #06deb2;
     color: white;
+    margin: 0 1rem;
+    padding: 0.5rem 1rem;
+    border: transparent;
+    border-radius: 10px;
+}
+
+.nav-links {
+    color: black;
+    margin: 0 1rem;
+    font-weight: bold;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Amatic SC', cursive;
 }

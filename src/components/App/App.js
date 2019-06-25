@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link, Route, Switch } from "react-router-dom";
 import "./App.css";
+import logo from './trophy.png'
 import Home from "../Home/Home";
 import Host from "../Host/Host";
 import Game from "../Game/Game";
@@ -16,30 +17,34 @@ class App extends Component {
         <nav className="nav-bar">
           <div className="nav-logo-container">
             <Link to="/">
-              <img src="Logo.png" alt="Home" className="nav-logo" />
+              <img src={logo} alt="Logo" className="nav-logo" />
             </Link>
+            <span className="title">Rec|Creation</span>
           </div>
           <div className="nav-buttons-container">
-            <Link to="../Search" className="nav-buttons">
+            <Link to="/search" className="nav-links">
               Search
             </Link>
-            <Link to="../Host" className="nav-buttons">
+            <Link to="/host" className="nav-links">
               Host
             </Link>
-            <Link to="../CreateGame" className="nav-buttons">
+            <Link to="/create-game" className="nav-links">
               Submit Game
+            </Link>
+            <Link to="/login" className="nav-buttons">
+              Login
             </Link>
           </div>
         </nav>
         <main>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/Search" exact component={Search} />
-            <Route path="/Host" exact component={Host} />
-            <Route path="/Game" exact component={Game} />
-            <Route path="/Grid" exact component={Grid} />
-            <Route path="/Event" exact component={Event} />
-            <Route path="/CreateGame" exact component={CreateGame} />
+            <Route path="/search" exact component={Search} />
+            <Route path="/host" exact component={Host} />
+            <Route path="/game" exact component={Game} />
+            <Route path="/grid" exact component={Grid} />
+            <Route path="/event" exact component={Event} />
+            <Route path="/create-game" exact component={CreateGame} />
           </Switch>
         </main>
       </div>

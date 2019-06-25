@@ -3,3 +3,8 @@ body {
   background-color: #fb6986;
   font-family: 'Montserrat', sans-serif;
 }
+
+a:visited,
+a:link {
+  text-decoration: none;
+}
