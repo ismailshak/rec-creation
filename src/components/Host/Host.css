@@ -1,0 +1,47 @@
+.Host {
+  color: white;
+  /* margin: 5rem 0 0 10rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Host h1 {
+  font-weight: 800;
+  font-size: 3rem;
+}
+
+.Host p {
+  font-weight: 100;
+}
+
+.host-info-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  padding-left: 10rem;
+}
+
+.host-form {
+  display: grid;
+  background-color: whitesmoke;
+  color: black;
+  margin: 10px;
+  border: 100px;
+  padding: 20px;
+  width: 75%;
+  height: 75%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+.host-text-container {
+}
+
+.host-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}

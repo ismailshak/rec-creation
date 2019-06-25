@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, Link } from "react-router-dom";
 import "./Search.css";
 import Game from "../Game/Game";
 import Event from "../Event/Event";
@@ -10,8 +10,12 @@ class Search extends Component {
     return (
       <div>
         <h1>Search!</h1>
-        <button type="button">Game</button>
-        <button type="button">Event</button>
+        <Link className="nav-buttons" to="/host">
+          Host
+        </Link>
+        <Link className="nav-buttons" to="/search">
+          Search
+        </Link>
         <Switch>
           <Redirect path="/Grid" exact component={Grid} />
           <Route path="/Game" exact component={Game} />

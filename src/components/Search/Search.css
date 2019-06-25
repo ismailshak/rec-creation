@@ -1,0 +1,9 @@
+.nav-buttons {
+  height: 80%;
+  background-color: #06deb2;
+  color: white;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  border: transparent;
+  border-radius: 10px;
+}
