@@ -8,6 +8,12 @@ class Game extends Component {
       <div>
         <img src="IMG.png" alt="Img" />
         <h1>Game!</h1>
+        <li>
+          <ul>Supplies Needed:</ul>
+          <ul>Number of Player:</ul>
+          <ul>21+?</ul>
+          <ul>Rules/Instruction</ul>
+        </li>
         <div>
           <Event />
         </div>

@@ -6,6 +6,17 @@ class Event extends Component {
     return (
       <div>
         <h1>Event!</h1>
+        <div>
+          <form>
+            <p>Name:</p>
+            <input type="text" name="name" />
+            <p>Email:</p>
+            <input type="email" name="email" />
+            <p>Age:</p>
+            <input type="text" name="age" />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
       </div>
     );
   }

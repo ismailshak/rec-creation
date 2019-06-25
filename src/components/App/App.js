@@ -7,6 +7,7 @@ import Game from "../Game/Game";
 import Event from "../Event/Event";
 import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
+import Grid from "../Grid/Grid";
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route path="/Search" exact component={Search} />
             <Route path="/Host" exact component={Host} />
             <Route path="/Game" exact component={Game} />
+            <Route path="/Grid" exact component={Grid} />
             <Route path="/Event" exact component={Event} />
             <Route path="/CreateGame" exact component={CreateGame} />
           </Switch>
