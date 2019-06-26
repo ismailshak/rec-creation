@@ -9,6 +9,8 @@ import Event from "../Event/Event";
 import Search from "../Search/Search";
 import CreateGame from "../CreateGame/CreateGame";
 import Grid from "../Grid/Grid";
+import Login from "../Login/Login";
+import Signup from "../Signup/Signup";
 import axios from "axios";
 
 class App extends Component {
@@ -16,10 +18,17 @@ class App extends Component {
     super();
     this.state = {
       games: [],
-      events: []
+      events: [],
+      userID: localStorage.userID,
+      isLoggedIn: false,
     };
   }
   componentDidMount() {
+
+    if(localStorage.token) {
+      this.setState({isLoggedIn: true})
+    }
+
     const url = "https://rec-creation-api.herokuapp.com/api/games";
 
     axios
@@ -30,6 +39,45 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+  }
+
+  handleSignup = (obj) => {
+    let url = "https://rec-creation-api.herokuapp.com/api/users"
+    axios.post(url+"/signup", obj)
+      .then(res => {
+        localStorage.token = res.data.token;
+        localStorage.userID = res.data.userID;
+        this.setState({ 
+          isLoggedIn: true,
+          userID: res.data.userID
+        })
+      })
+      .catch(err => console.log(err));
+
+  }
+
+  handleLogin = (obj) => {
+    let url = "https://rec-creation-api.herokuapp.com/api/users"
+    axios.post(url+"/login", obj)
+      .then(res => {
+        console.log(res)
+        localStorage.token = res.data.token;
+        localStorage.userID = res.data.userID;
+        this.setState({ 
+          isLoggedIn: true, 
+          userID: res.data.userID 
+        });
+      })
+      .catch(err => console.log(err));
+  }
+
+  handleLogout = (e) => {
+    e.preventDefault();
+    this.setState({
+      isLoggedIn: false,
+      userID: "",
+    });
+    localStorage.clear();
   }
 
   render() {
@@ -57,9 +105,15 @@ class App extends Component {
             <Link to="/create-game" className="nav-links">
               Submit Game
             </Link>
-            <Link to="/login" className="nav-buttons">
+            {!this.state.isLoggedIn && <Link to="/login" className="nav-buttons">
               Login
-            </Link>
+            </Link>}
+            {!this.state.isLoggedIn && <Link to="/signup" className="nav-buttons">
+              Signup
+            </Link>}
+            {this.state.isLoggedIn && <span className="nav-greeting">Hello</span>}
+            {this.state.isLoggedIn && <Link onClick={this.handleLogout} to="/" className="nav-buttons">Logout</Link>}
+            
           </div>
         </nav>
         <Switch>
@@ -94,11 +148,13 @@ class App extends Component {
           <Route path="/grid" exact component={Grid} />
           <Route path="/event/:id" exact component={Event} />
           <Route path="/create-game" exact component={CreateGame} />
+          <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
+          <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
           {this.state.games.length != 0 && (
             <Route
               path="/"
               exact
-              render={props => <Home games={this.state.games} />}
+              render={props => <Home games={this.state.games} {...props}/>}
             />
           )}
         </Switch>

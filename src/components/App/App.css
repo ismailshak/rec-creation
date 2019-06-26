@@ -57,3 +57,19 @@
     font-family: 'Amatic SC', cursive;
     color: black;
 }
+
+.nav-greeting {
+    color: black;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.nav-logout {
+    min-height: 80%;
+    background-color: #06deb2;
+    color: white;
+    margin: 0 1rem;
+    border: transparent;
+    border-radius: 10px;
+    
+}
