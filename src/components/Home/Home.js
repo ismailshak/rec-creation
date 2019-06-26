@@ -26,7 +26,10 @@ class Home extends Component {
           </Link>
         </div>
 
-        <Route path="/" render={props => <Popular games={this.props.games}  {...props}/>} />
+        <Route
+          path="/"
+          render={props => <Popular games={this.props.games} {...props} />}
+        />
       </div>
     );
   }
