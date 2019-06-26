@@ -51,18 +51,17 @@ class App extends Component {
             </Link>
           </div>
         </nav>
-        <main>
           <Switch>
             {this.state.games.length !== 0 && <Route
               path="/"
               exact
-              render={props => <Home games={this.state.games} />}
+              render={props => <Home games={this.state.games} {...props}/>}
             />}
             
             <Route
               path="/search"
               exact
-              render={props => <Search games={this.state.games} />}
+              render={props => <Search games={this.state.games} {...props}/>}
             />
             <Route path="/host" exact component={Host} />
             <Route path="/game/:id" exact component={Game} />
@@ -70,7 +69,6 @@ class App extends Component {
             <Route path="/event/:id" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
           </Switch>
-        </main>
       </div>
     );
   }

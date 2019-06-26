@@ -1,4 +1,39 @@
 .popular {
     background-color: white;
     width: 100%;
+    
+    height: 50%;
+}
+
+.popular-title {
+    color:black;
+    font-weight: bold;
+    padding-left: 5rem;
+}
+
+.popular-divs-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.popular-divs {
+    display: inline-flex;
+    width: 20%;
+    position: relative;
+    margin: 1rem;
+}
+
+.popular-images {
+    width: 100%;
+}
+
+.popular-caption {
+    width: 100%;
+    height: 15%;
+    background-color: rgba(255,255,255,0.6);
+    color: black;
+    font-weight: 800;
+    position: absolute;
+    bottom: 0;
 }

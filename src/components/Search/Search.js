@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import "./Search.css";
 import Grid from "../Grid/Grid";
+import Popular from '../Popular/Popular'
 import axios from "axios";
 
 class Search extends Component {
@@ -51,6 +52,7 @@ class Search extends Component {
         {this.state.whichInfo === "events" && (
           <Grid data={this.state.events} type="events" />
         )}
+        {this.state.whichInfo === "" && <Route path="/" render={props => <Popular games={this.props.games}  {...props}/>} />}
       </div>
     );
   }

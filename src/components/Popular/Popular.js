@@ -1,29 +1,62 @@
 import React, { Component } from "react";
 import "./Popular.css";
-import Carousel from "react-multi-carousel";
+// import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-const responsive = {
+
+class Popular extends Component {
+
+  handleClick = (id) => {
+    this.props.history.push("/game/"+id)
+  }
+
+
+  render() {
+    let popularGames = []
+    for(let i = 0; i < 4; i++) {
+        popularGames.push(this.props.games[i])
+    }
+
+    return (
+      <div className="popular">
+        <p className="popular-title">Popular</p>
+        <div className="popular-divs-container">
+          {popularGames.map((game, index) => {
+            return (
+                <div onClick={() => this.handleClick(game._id)} className="popular-divs" key={index}>
+                  <img src={game.image} alt={game.name} className="popular-images"/>
+                  <span className="popular-caption">{game.name}</span>
+                </div>)
+          })}
+        </div>
+        
+        
+        
+      </div>
+    );
+  }
+}
+
+export default Popular;
+
+/* 
+  const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 3
+    items: 4
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
+    items: 2
   }
 };
 
-class Popular extends Component {
-  render() {
-    return (
-      <div className="popular">
-        <p>Popular</p>
-        <Carousel
+  
+  <Carousel
           swipeable={false}
           draggable={false}
           showDots={false}
@@ -40,10 +73,11 @@ class Popular extends Component {
           removeArrowOnDeviceType={["tablet", "mobile"]}
           deviceType={this.props.deviceType}
           dotListClass="custom-dot-list-style"
-          itemClass="carousel-item-padding-40-px"
+          itemClass=""
+          // carousel-item-padding-40-px"
         >
           <div>
-            <img
+            <img className="carousel-images"
               src={this.props.games[0].image}
               alt="item 1"
               className="nav-logo"
@@ -91,10 +125,4 @@ class Popular extends Component {
             Item 6
           </div>
           
-        </Carousel>
-      </div>
-    );
-  }
-}
-
-export default Popular;
+        </Carousel> */

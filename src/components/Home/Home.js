@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import "./Home.css";
 import Popular from "../Popular/Popular";
 
@@ -26,7 +26,7 @@ class Home extends Component {
           </Link>
         </div>
 
-        <Popular games={this.props.games} />
+        <Route path="/" render={props => <Popular games={this.props.games}  {...props}/>} />
       </div>
     );
   }
