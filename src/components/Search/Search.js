@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./Search.css";
 import Grid from "../Grid/Grid";
 import Popular from '../Popular/Popular'
@@ -36,15 +36,20 @@ class Search extends Component {
 
   render() {
     return (
-      <div>
+      <div className="Search">
         <div className="search-info-container">
-          <h1>Search!</h1>
-          <Link className="nav-buttons" onClick={this.handleClick}>
-            Games
-          </Link>
-          <Link className="nav-buttons" onClick={this.handleClick}>
-            Events
-          </Link>
+          <div className="search-text-container">
+            <h1>Search!</h1>
+          </div>
+          <div className="search-buttons-container">
+            <button className="nav-buttons" onClick={this.handleClick}>
+              Games
+            </button>
+            <button className="nav-buttons" onClick={this.handleClick}>
+              Events
+            </button>
+          </div>
+          
         </div>
         {this.state.whichInfo === "games" && (
           <Grid data={this.state.games} type="games" />

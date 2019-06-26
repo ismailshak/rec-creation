@@ -1,9 +1,35 @@
-.nav-buttons {
-  height: 80%;
-  background-color: #06deb2;
+.Search {
   color: white;
-  margin: 0 1rem;
-  padding: 0.5rem 1rem;
-  border: transparent;
-  border-radius: 10px;
+  /* margin: 5rem 0 0 10rem; */
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-info-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding-left: 10rem;
+  align-items: center;
+}
+
+.search-text-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-buttons-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rem;
+}
+
+.search-buttons-container button{
+  font-size: 1rem;
+  font-family: 'Montserrat', sans-serif;
 }

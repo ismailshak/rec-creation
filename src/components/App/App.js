@@ -63,7 +63,7 @@ class App extends Component {
               exact
               render={props => <Search games={this.state.games} {...props}/>}
             />
-            <Route path="/host" exact component={Host} />
+            <Route path="/host" exact render={props => <Host games={this.state.games} {...props}/>} />
             <Route path="/game/:id" exact component={Game} />
             <Route path="/grid" exact component={Grid} />
             <Route path="/event/:id" exact component={Event} />
