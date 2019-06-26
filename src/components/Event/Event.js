@@ -1,56 +1,46 @@
 import React, { Component } from "react";
 import "./Event.css";
+import axios from "axios";
 
 class Event extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // host: null,
-      // games: props.games,
-      isValid: true
+      events: []
     };
   }
 
-  handleForm = e => {
-    e.preventDefault();
-    let t = e.target;
-    if (!t.name.value || !t.email.value || !t.age.value) {
-      this.setState({ isValid: false });
-    } else {
-      let returnedForm = {
-        name: t.name.value,
-        email: t.email.value,
-        age: t.age.value,
-        status: true
-      };
-      console.log(returnedForm);
-      this.setState({ isValid: true });
-    }
-  };
-
+  componentDidMount() {
+    // let url = "https://rec-creation-api.herokuapp.com";
+    // let extension = this.props.match.params.id;
+    // axios
+    //   .get(url + "/api/events/events/game/" + extension)
+    //   .then(res => this.setState({ events: res.data }))
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
+    // console.log(this.state);
+  }
   render() {
+    // let listEvents = [];
+    // for (let i = 0; i < this.state.events.lenght; i++) {
+    //   listEvents.push(this.props.events[i]);
     return (
       <div className="Event">
         <div className="event-text-container">
-          <h3>Join an Event! Fill out the form below.</h3>
-          {!this.state.isValid && (
-            <p className="event-error">fill out all the fields!</p>
-          )}
-        </div>
-        <h1>Event!</h1>
-        <div className="Event-info-container">
-          <form className="event-form" onSubmit={this.handleForm}>
-            <p>Name:</p>
-            <input type="text" className="name event-input" name="name" />
-            <p>Email:</p>
-            <input type="email" className="emial event-input" name="email" />
-            <p>Age:</p>
-            <input type="text" className="age event-input" name="age" />
-            <input type="submit" className="submit" value="Submit" />
-          </form>
+          <h3>List of events</h3>
+          <div className="event-info-container">
+            <ul className="event-list">
+              <li>1</li>
+              <li>2</li>
+              <li>3</li>
+              <li>4</li>
+            </ul>
+          </div>
         </div>
       </div>
     );
+    // }
   }
 }
 
