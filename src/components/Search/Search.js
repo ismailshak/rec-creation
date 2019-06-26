@@ -1,57 +1,47 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import "./Search.css";
 import Grid from "../Grid/Grid";
-import axios from "axios";
 
 class Search extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {
-      whichInfo: "",
-      events: [],
-      games: props.games
+      data: props.data.map(item => {
+        return {
+          hidden: false,
+          ...item,
+        }
+      }),
+      type: props.type,
+      searchInput: ""
     };
   }
 
-  handleClick = e => {
-    if (e.target.innerText === "Games") {
-      this.setState({ whichInfo: "games" });
-    } else {
-      this.setState({ whichInfo: "events" });
+  handleChange = (event) => {
+    console.log(event.target.value)
+    let data = this.state.data
+    for(let i = 0; i < data.length; i++) {
+      if(data[i].person.indexOf(event.target.value) !== -1) {
+        data[i].hidden = false;
+      } else {
+        data[i].hidden = true;
+      }
     }
-  };
-
-  componentDidMount() {
-    let url = "https://rec-creation-api.herokuapp.com/";
-    axios
-      .get(url + "/api/events")
-      .then(res => {
-        this.setState({ events: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    this.setState({
+      searchInput: event.target.value
+    })
   }
 
   render() {
     return (
-      <div>
-        <div className="search-info-container">
-          <h1>Search!</h1>
-          <Link className="nav-buttons" onClick={this.handleClick}>
-            Games
-          </Link>
-          <Link className="nav-buttons" onClick={this.handleClick}>
-            Events
-          </Link>
+      <div className="Search">
+        <div className="search-header-container">
+          <h3 className="search-text">{"List of our "+this.state.type}</h3>
+          <input className="search-input" type="text" name="search" onChange={this.handleChange}/>
         </div>
-        {this.state.whichInfo === "games" && (
-          <Grid data={this.state.games} type="games" />
-        )}
-        {this.state.whichInfo === "events" && (
-          <Grid data={this.state.events} type="events" />
-        )}
+        <Route render={props => <Grid data={this.state.data} type={this.state.type} {...props}/>} />
       </div>
     );
   }
