@@ -37,17 +37,17 @@ class Host extends Component {
         <div className="host-info-container">
           <div className="host-text-container">
             <h3>Host an Event! Fill out the form below.</h3>
-            {!this.state.isValid && <p className="host-error">Fill out all the fields!</p>}
+            {!this.state.isValid && <p className="host-error">fill out all the fields!</p>}
           </div>
           
           <form className="host-form" onSubmit={this.handleForm}>
             Name: <input type="text" className="name host-input" name="name" />
             Game:
             <select className="game host-input" name="gameList">
+              <option value="" disabled selected>Select an option</option>
               {this.state.games.map((game, index) => {
                 return <option key={index}>{game.name}</option>
               })}
-              
             </select>
             Location:
             <input type="text" className="location host-input" name="location"/>

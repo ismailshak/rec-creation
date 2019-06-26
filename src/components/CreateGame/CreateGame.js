@@ -33,7 +33,7 @@ class CreateGame extends Component {
         <div className="create-info-container">
           <div className="create-text-container">
             <h3>Submit A New Game! Fill out the form below.</h3>
-            {!this.state.isValid && <p className="create-error">Fill out all the fields!</p>}
+            {!this.state.isValid && <p className="create-error">fill out all the fields!</p>}
           </div>
           <form className="create-form" onSubmit={this.handleForm}>
             Name:

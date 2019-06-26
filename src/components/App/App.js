@@ -41,7 +41,10 @@ class App extends Component {
           </div>
           <div className="nav-buttons-container">
             <Link to="/search" className="nav-links">
-              Search
+              Games
+            </Link>
+            <Link to="/search" className="nav-links">
+              Events
             </Link>
             <Link to="/host" className="nav-links">
               Host
