@@ -23,6 +23,9 @@ class App extends Component {
 
     axios.get(url).then(res => {
       this.setState({ games: res.data });
+    })
+    .catch((err) => {
+        console.log(err)
     });
   }
 
@@ -64,7 +67,7 @@ class App extends Component {
               render={props => <Search games={this.state.games} {...props}/>}
             />
             <Route path="/host" exact render={props => <Host games={this.state.games} {...props}/>} />
-            <Route path="/game/:id" exact component={Game} />
+            <Route path="/game/:id" exact render={props => <Game {...props}/>} />
             <Route path="/grid" exact component={Grid} />
             <Route path="/event/:id" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
