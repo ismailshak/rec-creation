@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import "./Grid.css";
+import {Link} from 'react-router-dom'
 
 class Grid extends Component {
+
+  handleClick = (id) => {
+    this.props.history.push("/game/"+id)
+  }
+
   render() {
     return (
-      <div>
-        <h3>{"List of our "+this.props.type}</h3>
-        <input type="text" name="search" />
-        <button type="button">search</button>
-        <div>
+      <div className="Grid">
+        <div className="grid-div-container">
           {this.props.data.map((data, index) => {
-            return <div><span>{data.name}</span></div>
+            return <div onClick={() => this.handleClick(data._id)} className="grid-div" key={index}>
+                <img src={data.image} alt={data.name} />
+                <span className="grid-caption">{data.name}</span>
+              </div>
           })}
         </div>
       </div>

@@ -15,7 +15,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      games: []
+      games: [],
+      events: []
     };
   }
   componentDidMount() {
@@ -40,10 +41,10 @@ class App extends Component {
             <Link to="/"><span className="title">Rec|Creation</span></Link>
           </div>
           <div className="nav-buttons-container">
-            <Link to="/search" className="nav-links">
+            <Link to="/search/games" className="nav-links">
               Games
             </Link>
-            <Link to="/search" className="nav-links">
+            <Link to="/search/events" className="nav-links">
               Events
             </Link>
             <Link to="/host" className="nav-links">
@@ -65,9 +66,14 @@ class App extends Component {
             />}
             
             <Route
-              path="/search"
+              path="/search/games"
               exact
-              render={props => <Search games={this.state.games} {...props}/>}
+              render={props => <Search data={this.state.games} type="games" {...props}/>}
+            />
+            <Route
+              path="/search/events"
+              exact
+              render={props => <Search data={this.state.events} type="events" {...props}/>}
             />
             <Route path="/host" exact render={props => <Host games={this.state.games} {...props}/>} />
             <Route path="/game/:id" exact render={props => <Game {...props}/>} />
@@ -81,3 +87,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+//axios.post(url, req.body, {headers: {Authorization: "bearer " + localStorage.token}})
