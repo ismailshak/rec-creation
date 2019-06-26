@@ -22,12 +22,14 @@ class App extends Component {
   componentDidMount() {
     const url = "https://rec-creation-api.herokuapp.com/api/games";
 
-    axios.get(url).then(res => {
-      this.setState({ games: res.data });
-    })
-    .catch((err) => {
-        console.log(err)
-    });
+    axios
+      .get(url)
+      .then(res => {
+        this.setState({ games: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
@@ -38,7 +40,9 @@ class App extends Component {
             <Link to="/">
               <img src={logo} alt="Logo" className="nav-logo" />
             </Link>
-            <Link to="/"><span className="title">Rec|Creation</span></Link>
+            <Link to="/">
+              <span className="title">Rec|Creation</span>
+            </Link>
           </div>
           <div className="nav-buttons-container">
             <Link to="/search/games" className="nav-links">
@@ -58,47 +62,51 @@ class App extends Component {
             </Link>
           </div>
         </nav>
-          <Switch>
-<<<<<<< HEAD
+        <Switch>
+          {this.state.games.length !== 0 && (
             <Route
-              path="/search"
-=======
-            {this.state.games.length !== 0 && <Route
               path="/"
               exact
-              render={props => <Home games={this.state.games} {...props}/>}
-            />}
-            
-            <Route
-              path="/search/games"
-              exact
-              render={props => <Search data={this.state.games} type="games" {...props}/>}
+              render={props => <Home games={this.state.games} {...props} />}
             />
-            <Route
-              path="/search/events"
->>>>>>> refs/remotes/origin/master
-              exact
-              render={props => <Search data={this.state.events} type="events" {...props}/>}
-            />
-            <Route path="/host" exact render={props => <Host games={this.state.games} {...props}/>} />
-            <Route path="/game/:id" exact render={props => <Game {...props}/>} />
-            <Route path="/grid" exact component={Grid} />
-            <Route path="/event/:id" exact component={Event} />
-            <Route path="/create-game" exact component={CreateGame} />
-            {this.state.games.length != 0 && (
-              <Route
-                path="/"
-                exact
-                render={props => <Home games={this.state.games} />}
-              />
+          )}
+
+          <Route
+            path="/search/games"
+            exact
+            render={props => (
+              <Search data={this.state.games} type="games" {...props} />
             )}
-          </Switch>
+          />
+          <Route
+            path="/search/events"
+            exact
+            render={props => (
+              <Search data={this.state.events} type="events" {...props} />
+            )}
+          />
+          <Route
+            path="/host"
+            exact
+            render={props => <Host games={this.state.games} {...props} />}
+          />
+          <Route path="/game/:id" exact render={props => <Game {...props} />} />
+          <Route path="/grid" exact component={Grid} />
+          <Route path="/event/:id" exact component={Event} />
+          <Route path="/create-game" exact component={CreateGame} />
+          {this.state.games.length != 0 && (
+            <Route
+              path="/"
+              exact
+              render={props => <Home games={this.state.games} />}
+            />
+          )}
+        </Switch>
       </div>
     );
   }
 }
 
 export default App;
-
 
 //axios.post(url, req.body, {headers: {Authorization: "bearer " + localStorage.token}})
