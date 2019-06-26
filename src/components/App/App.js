@@ -21,9 +21,12 @@ class App extends Component {
   componentDidMount() {
     const url = "https://rec-creation-api.herokuapp.com/api/games";
 
-    axios.get(url).then(res => {
-      this.setState({ games: res.data });
-    });
+    axios
+      .get(url)
+      .then(res => {
+        this.setState({ games: res.data });
+      })
+      .then(_ => console.log(this.state));
   }
 
   render() {
@@ -54,11 +57,6 @@ class App extends Component {
         <main>
           <Switch>
             <Route
-              path="/"
-              exact
-              render={props => <Home games={this.state.games} />}
-            />
-            <Route
               path="/search"
               exact
               render={props => <Search games={this.state.games} />}
@@ -68,6 +66,13 @@ class App extends Component {
             <Route path="/grid" exact component={Grid} />
             <Route path="/event" exact component={Event} />
             <Route path="/create-game" exact component={CreateGame} />
+            {this.state.games.length != 0 && (
+              <Route
+                path="/"
+                exact
+                render={props => <Home games={this.state.games} />}
+              />
+            )}
           </Switch>
         </main>
       </div>
