@@ -1,0 +1,34 @@
+.Event {
+  color: black;
+  /* margin: 5rem 0 0 10rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.event-info-container {
+  margin-top: 3rem;
+  background-color: white;
+  width: 40%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-around;
+}
+
+.event-list {
+  list-style: none;
+}
+
+/* .host-info-container h3 {
+  margin-bottom: 4rem;
+} */
+
+.event-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
