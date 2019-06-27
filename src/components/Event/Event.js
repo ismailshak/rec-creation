@@ -1,46 +1,48 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
+import Game from "../Game/Game";
 
 class Event extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      events: []
+      eventObj: []
     };
   }
 
   componentDidMount() {
-    // let url = "https://rec-creation-api.herokuapp.com";
-    // let extension = this.props.match.params.id;
-    // axios
-    //   .get(url + "/api/events/events/game/" + extension)
-    //   .then(res => this.setState({ events: res.data }))
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
-    // console.log(this.state);
+    let url = "https://rec-creation-api.herokuapp.com";
+    let extension = this.props.match.params.id;
+    axios
+      .get(url + "/api/events/id/" + extension)
+      .then(res => this.setState({ eventObj: res.data }))
+      .catch(err => {
+        console.log(err);
+      });
   }
+
   render() {
-    // let listEvents = [];
-    // for (let i = 0; i < this.state.events.lenght; i++) {
-    //   listEvents.push(this.props.events[i]);
     return (
       <div className="Event">
-        <div className="event-text-container">
-          <h3>List of events</h3>
-          <div className="event-info-container">
-            <ul className="event-list">
-              <li>1</li>
-              <li>2</li>
-              <li>3</li>
-              <li>4</li>
-            </ul>
+        <div className="event-container">
+          <div className="event-event-container">
+            {this.state.eventObj.name && (
+              <div className="event-info-container">
+                <h1>{this.state.eventObj.name}!</h1>
+              </div>
+            )}
+          </div>
+          <div className="event-buttons-container">
+            <input type="button" className="button" value="Edit" />
+            <input type="button" className="button" value="Delete" />
+          </div>
+          <div className="game-event-container">
+            <Event />
           </div>
         </div>
       </div>
     );
-    // }
   }
 }
 

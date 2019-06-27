@@ -60,12 +60,16 @@ class Game extends Component {
               </div>
             )}
           </div>
-          <div className="game-buttons-container">
-            <input type="button" className="button" value="Edit" />
-            <input type="button" className="button" value="Delete" />
-          </div>
           <div className="game-event-container">
-            <Event />
+            <h3>List of events</h3>
+            <div className="event-info-container">
+              <ul className="event-list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
