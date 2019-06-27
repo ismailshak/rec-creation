@@ -24,34 +24,38 @@ class User extends Component {
   render() {
     return (
       <div className="User">
-        {this.state.user.firstName && (
-          <div className="user-container">
-            <div className="user-data-container">
-              {this.state.user.firstName && (
-                <div className="user-info-container">
-                  <h1>
-                    {this.state.user.firstName} {this.state.user.lastName}!
-                  </h1>
-                  <h3>{this.state.user.email}</h3>
-                </div>
-              )}
-
-              {this.state.user.hosting.map(host => {
-                return (
-                  <div className="user-hosting-containter">{host.name}</div>
-                );
-              })}
-
-              {this.state.user.attending.map(attending => {
-                return (
-                  <div className="user-attending-containter">
-                    {attending.name}
+        <div className="user-container">
+          {this.state.user.firstName && (
+            <div className="user-user-container">
+              <div className="user-data-container">
+                {this.state.user.firstName && (
+                  <div className="user-info-container">
+                    <h1>
+                      {this.state.user.firstName} {this.state.user.lastName}!
+                    </h1>
+                    <h3>{this.state.user.email}</h3>
                   </div>
-                );
-              })}
+                )}
+                <div className="user-hosting-containter">
+                  <h3>Hosting</h3>
+                  {this.state.user.hosting.map(host => {
+                    return <div className="user-hosting-list">{host.name}</div>;
+                  })}
+                </div>
+                <div className="user-hosting-containter">
+                  <h3>Attending</h3>
+                  {this.state.user.attending.map(attending => {
+                    return (
+                      <div className="user-attending-list">
+                        {attending.name}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     );
   }
