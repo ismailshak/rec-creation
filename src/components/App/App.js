@@ -23,7 +23,7 @@ class App extends Component {
       events: [],
       userID: localStorage.userID,
       isLoggedIn: false,
-      name: ""
+      name: localStorage.name
     };
   }
   componentDidMount() {
