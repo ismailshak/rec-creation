@@ -27,9 +27,9 @@ class Event extends Component {
       <div className="Event">
         <div className="event-container">
           <div className="event-event-container">
-            {this.state.eventObj.name && (
+            {this.state.event.name && (
               <div className="event-info-container">
-                <h1>{this.state.eventObj.name}!</h1>
+                <h1>{this.state.event.name}!</h1>
               </div>
             )}
           </div>
