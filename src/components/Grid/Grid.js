@@ -4,7 +4,12 @@ import "./Grid.css";
 class Grid extends Component {
 
   handleClick = (id) => {
-    this.props.history.push("/game/"+id)
+    if(this.props.type === "games") {
+      this.props.history.push("/game/"+id)
+    } else {
+      this.props.history.push("/event/"+id)
+    }
+    
   }
 
   render() {

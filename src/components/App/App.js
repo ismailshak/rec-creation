@@ -163,7 +163,7 @@ class App extends Component {
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
           <Route path="/event/:id" exact component={Event} />
-          <Route path="/create-game" exact component={CreateGame} />
+          <Route path="/create-game" exact render={props => <CreateGame {...props}/>} />
           <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
           <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
           {this.state.games.length !== 0 && (
