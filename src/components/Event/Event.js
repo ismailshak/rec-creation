@@ -7,7 +7,7 @@ class Event extends Component {
   constructor() {
     super();
     this.state = {
-      event : {}
+      event: {}
     };
   }
 
@@ -30,16 +30,44 @@ class Event extends Component {
             {this.state.event.name && (
               <div className="event-info-container">
                 <h1>{this.state.event.name}!</h1>
+                <ul className="game-list">
+                  <li>
+                    <span className="bold-font">
+                      <h3>Host:</h3>
+                    </span>
+                    {this.state.event.host.firstname}
+                  </li>
+                  <li>
+                    <span className="bold-font">
+                      <h3>Location:</h3>
+                    </span>
+                    {this.state.event.location}
+                  </li>
+                  <li>
+                    <span className="bold-font">
+                      <h3>Game:</h3>
+                    </span>
+                    {this.state.event.game.name}
+                    {this.state.event.game.supplies}
+                    {this.state.event.game.players}
+                    {this.state.event.game.rules}
+                  </li>
+                  <li>
+                    <span className="bold-font">
+                      <h3>Type:</h3>
+                    </span>
+                    {this.state.event.type}
+                  </li>
+                </ul>
               </div>
             )}
           </div>
           <div className="event-buttons-container">
             <input type="button" className="button" value="Edit" />
             <input type="button" className="button" value="Delete" />
+            <input type="button" className="button" value="Attend" />
           </div>
-          <div className="event-game-container">
-            <Event />
-          </div>
+          <div className="event-attending-container" />
         </div>
       </div>
     );

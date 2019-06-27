@@ -64,10 +64,14 @@ class Game extends Component {
             <h3>List of events</h3>
             <div className="event-info-container">
               <ul className="event-list">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
+                {this.state.gameObj.events !== undefined
+                  ? this.state.gameObj.events.map(event => {
+                      return <li>{event.name}</li>;
+                    })
+                  : ""}
+                {/* {this.state.gameObj.events.map(event => {
+                  return <li>{event.name}</li>;
+                })} */}
               </ul>
             </div>
           </div>
