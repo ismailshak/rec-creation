@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
-import Game from "../Game/Game";
 
 class Event extends Component {
   constructor() {
@@ -35,7 +34,7 @@ class Event extends Component {
                     <span className="bold-font">
                       <h3>Host:</h3>
                     </span>
-                    {this.state.event.host.firstname}
+                    {this.state.event.host.firstName}
                   </li>
                   <li>
                     <span className="bold-font">
