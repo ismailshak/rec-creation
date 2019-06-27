@@ -36,7 +36,6 @@ class Host extends Component {
       this.setState({isValid: true})
 
       let url = "https://rec-creation-api.herokuapp.com/api/events"
-
       axios.post(url, returnedForm,  {headers: {Authorization: "bearer " + localStorage.token}})
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
@@ -58,7 +57,7 @@ class Host extends Component {
             <select className="game host-input" name="gameList">
               <option value="" disabled selected>Select an option</option>
               {this.state.games.map((game, index) => {
-                return <option key={index}>{game.name}</option>
+                return <option key={index} value={game._id}>{game.name}</option>
               })}
             </select>
             Location:

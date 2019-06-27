@@ -7,7 +7,7 @@ class Event extends Component {
   constructor() {
     super();
     this.state = {
-      eventObj: []
+      event : {}
     };
   }
 
@@ -16,7 +16,7 @@ class Event extends Component {
     let extension = this.props.match.params.id;
     axios
       .get(url + "/api/events/id/" + extension)
-      .then(res => this.setState({ eventObj: res.data }))
+      .then(res => this.setState({ event: res.data }))
       .catch(err => {
         console.log(err);
       });
