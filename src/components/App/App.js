@@ -43,14 +43,6 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-    axios
-      .get(url+"/api/events")
-      .then(res => {
-        this.setState({ events: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
   }
 
   
@@ -61,6 +53,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
+        localStorage.name = res.data.name;
         this.setState({ 
           isLoggedIn: true,
           userID: res.data.userID
@@ -78,6 +71,7 @@ class App extends Component {
         console.log(res)
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
+        localStorage.name = res.data.name;
         this.setState({ 
           isLoggedIn: true, 
           userID: res.data.userID 
@@ -127,7 +121,7 @@ class App extends Component {
             {!this.state.isLoggedIn && <Link to="/signup" className="nav-buttons">
               Signup
             </Link>}
-            {this.state.isLoggedIn && <span className="nav-greeting">{"Hello, "  + this.state.firstName }</span>}
+            {this.state.isLoggedIn && <span className="nav-greeting">{"Hello, "  + this.state.name }</span>}
             {this.state.isLoggedIn && <Link onClick={this.handleLogout} to="/" className="nav-buttons">Logout</Link>}
             
           </div>
@@ -162,7 +156,7 @@ class App extends Component {
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
-          <Route path="/event/:id" exact component={Event} />
+          <Route path="/event/:id" exact render={props => <Event games={this.state.games} {...props}/>} />
           <Route path="/create-game" exact render={props => <CreateGame {...props}/>} />
           <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
           <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>

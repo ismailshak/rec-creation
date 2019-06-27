@@ -31,13 +31,16 @@ class Host extends Component {
         "location": t.location.value,
         "game": t.gameList.value,
         "type": t.typeList.value,
-        "status": true
+        "status": true,
+        "participants": parseInt(t.participants.value),
+        "description": t.description.value
       }
       this.setState({isValid: true})
 
       let url = "https://rec-creation-api.herokuapp.com/api/events"
       axios.post(url, returnedForm,  {headers: {Authorization: "bearer " + localStorage.token}})
         .then(res => console.log(res.data))
+        .then(_ => this.props.history.push("/search/events"))
         .catch(err => console.log(err));
     }
   }
