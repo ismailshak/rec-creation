@@ -2,6 +2,7 @@ body {
   margin: 0;
   background-color: #fb6986;
   font-family: 'Montserrat', sans-serif;
+  overscroll-behavior: none
 }
 
 a:visited,
