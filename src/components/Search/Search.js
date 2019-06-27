@@ -38,7 +38,7 @@ class Search extends Component {
     return (
       <div className="Search">
         <div className="search-header-container">
-          <h3 className="search-text">{"List of our "+this.state.type}</h3>
+          <h3 className="search-text">{"List of our "+this.state.type+":"}</h3>
           <input className="search-input" type="text" name="search" onChange={this.handleChange}/>
         </div>
         <Route render={props => <Grid data={this.state.data} type={this.state.type} {...props}/>} />

@@ -9,20 +9,23 @@ class Home extends Component {
       <div className="Home">
         <div className="home-info-container">
           <div className="home-text-container">
-            <h1>Welcome to Rec|Creation!</h1>
-            <p>
-              Looking for ideas? Want to host an event? <br />
+            <span className="home-intro-title">Welcome to Rec|Creation!</span>
+            <span className="home-intro-text">
+              Looking for ideas? Want to host an event?<br/>
               Find it all here. Have fun and meet new people! (proper marketing
               intro needed
-            </p>
+            </span>
           </div>
         </div>
         <div className="home-buttons-container">
           <Link className="nav-buttons" to="/host">
             Host
           </Link>
-          <Link className="nav-buttons" to="/search">
-            Search
+          <Link className="nav-buttons" to="/search/games">
+            Games
+          </Link>
+          <Link className="nav-buttons" to="/search/events">
+            Events
           </Link>
         </div>
 

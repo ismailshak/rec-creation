@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Grid.css";
-import {Link} from 'react-router-dom'
 
 class Grid extends Component {
 
