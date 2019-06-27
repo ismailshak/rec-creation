@@ -29,13 +29,11 @@ class Game extends Component {
           <div className="game-game-container">
             {this.state.gameObj.name && (
               <div className="game-info-container">
-                <div>
-                  <img
-                    className="image"
-                    src={this.state.gameObj.image}
-                    alt="icon"
-                  />
-                </div>
+                <img
+                  className="image"
+                  src={this.state.gameObj.image}
+                  alt="icon"
+                />
                 <h1>{this.state.gameObj.name}!</h1>
                 <ul className="game-list">
                   <li>
@@ -61,17 +59,15 @@ class Game extends Component {
             )}
           </div>
           <div className="game-event-container">
-            <h3>List of events</h3>
-            <div className="event-info-container">
+            <div className="event-list-container">
+              {" "}
+              <h3>List of events</h3>
               <ul className="event-list">
                 {this.state.gameObj.events !== undefined
                   ? this.state.gameObj.events.map(event => {
                       return <li>{event.name}</li>;
                     })
                   : ""}
-                {/* {this.state.gameObj.events.map(event => {
-                  return <li>{event.name}</li>;
-                })} */}
               </ul>
             </div>
           </div>
