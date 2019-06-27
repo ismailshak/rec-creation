@@ -37,7 +37,7 @@ class Event extends Component {
             <input type="button" className="button" value="Edit" />
             <input type="button" className="button" value="Delete" />
           </div>
-          <div className="game-event-container">
+          <div className="event-game-container">
             <Event />
           </div>
         </div>
