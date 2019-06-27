@@ -43,6 +43,14 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
+    axios
+      .get(url+"/api/events")
+      .then(res => {
+        this.setState({ events: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   
