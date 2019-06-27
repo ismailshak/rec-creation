@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Login.css'
 
 class Login extends Component {
     constructor() {
@@ -21,26 +22,26 @@ class Login extends Component {
             console.log(returnedObj)
             this.props.handleLogin(returnedObj);
             this.setState({isValid: true})
-            // this.props.history.push("/")
+            this.props.history.goBack()
         }
     }
 
     render() {
         return (
-            <div>
-                <div className="signup-text-container">
+            <div className="Login">
+                <div className="login-info-container">
+                    <div className="login-text-container">
                         <h3>Fill out the form below!</h3>
-                        {!this.state.isValid && <p className="signup-error">fill out all the fields!</p>}
-                        {this.props.isLoggedIn && <p>SUCCESS</p>}
-                        {!this.props.isLoggedIn && <p>FAILED</p>}
+                        {!this.state.isValid && <p className="login-error">fill out all the fields!</p>}
                     </div>
-                <form className="" onSubmit={this.handleForm}>
-                    Email:
-                    <input type="text" name="email"/>
-                    Password:
-                    <input type="password" name="password"/>
-                    <input type="submit" value="Login"/>
-                </form>
+                    <form className="login-form" onSubmit={this.handleForm}>
+                        Email:
+                        <input class="login-input" type="text" name="email"/>
+                        Password:
+                        <input class="login-input" type="password" name="password"/>
+                        <input class="submit" type="submit" value="Login"/>
+                    </form>
+                </div>
             </div>
         );
     }

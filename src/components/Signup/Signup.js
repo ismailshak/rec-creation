@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Signup.css'
 
 class Signup extends Component {
     constructor() {
@@ -53,16 +54,16 @@ class Signup extends Component {
                     </div>
                     <form onSubmit={this.handleForm} className="signup-form">
                         First Name:
-                        <input type="text" name="firstName"/>
+                        <input className="signup-input" type="text" name="firstName"/>
                         Last Name:
-                        <input type="text" name="lastName"/>
+                        <input className="signup-input" type="text" name="lastName"/>
                         Email:
-                        <input type="text" name="email"/>
+                        <input className="signup-input" type="text" name="email"/>
                         Password:
-                        <input type="password" name="password"/>
+                        <input className="signup-input" type="password" name="password"/>
                         Confirm Password:
-                        <input type="password" name="passwordConfirm"/>
-                        <input type="submit" value="Signup"/>
+                        <input className="signup-input" type="password" name="passwordConfirm"/>
+                        <input type="submit" className="submit" value="Signup"/>
                     </form>
                 </div>
                 

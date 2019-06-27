@@ -13,26 +13,30 @@ import Login from "../Login/Login";
 import Signup from "../Signup/Signup";
 import axios from "axios";
 
+
+let url = "https://rec-creation-api.herokuapp.com"
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       games: [],
       events: [],
       userID: localStorage.userID,
       isLoggedIn: false,
+      name: localStorage.name
     };
   }
   componentDidMount() {
+
+    console.log(this.props)
 
     if(localStorage.token) {
       this.setState({isLoggedIn: true})
     }
 
-    const url = "https://rec-creation-api.herokuapp.com/api/games";
 
     axios
-      .get(url)
+      .get(url+"/api/games")
       .then(res => {
         this.setState({ games: res.data });
       })
@@ -41,8 +45,10 @@ class App extends Component {
       });
   }
 
+  
+
   handleSignup = (obj) => {
-    let url = "https://rec-creation-api.herokuapp.com/api/users"
+    
     axios.post(url+"/signup", obj)
       .then(res => {
         localStorage.token = res.data.token;
@@ -52,13 +58,14 @@ class App extends Component {
           userID: res.data.userID
         })
       })
+      .get(url+"/id/"+localStorage.userID)
+      .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
       .catch(err => console.log(err));
 
   }
 
   handleLogin = (obj) => {
-    let url = "https://rec-creation-api.herokuapp.com/api/users"
-    axios.post(url+"/login", obj)
+    axios.post(url+"/api/users/login", obj)
       .then(res => {
         console.log(res)
         localStorage.token = res.data.token;
@@ -78,6 +85,7 @@ class App extends Component {
       userID: "",
     });
     localStorage.clear();
+    this.props.history.push("/")
   }
 
   render() {
@@ -102,7 +110,7 @@ class App extends Component {
             <Link to="/host" className="nav-links">
               Host
             </Link>
-            <Link to="/create-game" className="nav-links">
+            <Link to={this.state.isLoggedIn ? "/create-game" : "/login"} className="nav-links">
               Submit Game
             </Link>
             {!this.state.isLoggedIn && <Link to="/login" className="nav-buttons">
@@ -111,7 +119,7 @@ class App extends Component {
             {!this.state.isLoggedIn && <Link to="/signup" className="nav-buttons">
               Signup
             </Link>}
-            {this.state.isLoggedIn && <span className="nav-greeting">Hello</span>}
+            {this.state.isLoggedIn && <span className="nav-greeting">{"Hello, "  + this.state.firstName }</span>}
             {this.state.isLoggedIn && <Link onClick={this.handleLogout} to="/" className="nav-buttons">Logout</Link>}
             
           </div>
@@ -142,7 +150,7 @@ class App extends Component {
           <Route
             path="/host"
             exact
-            render={props => <Host games={this.state.games} {...props} />}
+            render={props => <Host games={this.state.games} {...props} isLoggedIn={this.state.isLoggedIn} />}
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
@@ -150,7 +158,7 @@ class App extends Component {
           <Route path="/create-game" exact component={CreateGame} />
           <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
           <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
-          {this.state.games.length != 0 && (
+          {this.state.games.length !== 0 && (
             <Route
               path="/"
               exact
@@ -164,5 +172,3 @@ class App extends Component {
 }
 
 export default App;
-
-//axios.post(url, req.body, {headers: {Authorization: "bearer " + localStorage.token}})

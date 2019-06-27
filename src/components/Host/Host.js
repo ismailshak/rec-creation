@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Host.css";
+import axios from "axios";
 
 class Host extends Component {
   constructor(props) {
@@ -11,6 +12,12 @@ class Host extends Component {
     }
   }
  
+  componentDidMount( ) {
+    if(!this.props.isLoggedIn) {
+      this.props.history.push("/login")
+    }
+  }
+
   handleForm = (e) => {
     e.preventDefault()
     let t = e.target;
@@ -20,14 +27,19 @@ class Host extends Component {
       
       let returnedForm = {
         "name": t.name.value,
-        "host": this.state.host,
+        "host": localStorage.userID,
         "location": t.location.value,
         "game": t.gameList.value,
         "type": t.typeList.value,
         "status": true
       }
-      console.log(returnedForm)
       this.setState({isValid: true})
+
+      let url = "https://rec-creation-api.herokuapp.com/api/events"
+
+      axios.post(url, returnedForm,  {headers: {Authorization: "bearer " + localStorage.token}})
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
     }
   }
 
