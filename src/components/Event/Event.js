@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
+import Game from "../Game/Game";
 
 class Event extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       event : {}
     };
@@ -20,16 +21,28 @@ class Event extends Component {
         console.log(err);
       });
   }
+
   render() {
-    // let listEvents = [];
-    // for (let i = 0; i < this.state.events.lenght; i++) {
-    //   listEvents.push(this.props.events[i]);
     return (
       <div className="Event">
-        <h1>Hello</h1>
+        <div className="event-container">
+          <div className="event-event-container">
+            {this.state.eventObj.name && (
+              <div className="event-info-container">
+                <h1>{this.state.eventObj.name}!</h1>
+              </div>
+            )}
+          </div>
+          <div className="event-buttons-container">
+            <input type="button" className="button" value="Edit" />
+            <input type="button" className="button" value="Delete" />
+          </div>
+          <div className="game-event-container">
+            <Event />
+          </div>
+        </div>
       </div>
     );
-    // }
   }
 }
 

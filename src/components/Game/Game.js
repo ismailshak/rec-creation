@@ -26,14 +26,16 @@ class Game extends Component {
     return (
       <div className="Game">
         <div className="game-container">
-          <div className="game-info-container">
+          <div className="game-game-container">
             {this.state.gameObj.name && (
-              <div>
-                <img
-                  className="image"
-                  src={this.state.gameObj.image}
-                  alt="icon"
-                />
+              <div className="game-info-container">
+                <div>
+                  <img
+                    className="image"
+                    src={this.state.gameObj.image}
+                    alt="icon"
+                  />
+                </div>
                 <h1>{this.state.gameObj.name}!</h1>
                 <ul className="game-list">
                   <li>
@@ -59,7 +61,15 @@ class Game extends Component {
             )}
           </div>
           <div className="game-event-container">
-            <Event />
+            <h3>List of events</h3>
+            <div className="event-info-container">
+              <ul className="event-list">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
