@@ -1,24 +1,21 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
-<<<<<<< HEAD
-=======
-import Modal from 'react-modal'
+import Modal from "react-modal";
 
 const customStyles = {
-  content : {
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      height: '75%',
-      width: '40%'
+  content: {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    height: "75%",
+    width: "40%"
   }
 };
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
 
 class Event extends Component {
   constructor() {
@@ -26,7 +23,7 @@ class Event extends Component {
     this.state = {
       event: {},
       editIsOpen: false,
-      deleteIsOpen: false,
+      deleteIsOpen: false
     };
   }
 
@@ -41,48 +38,52 @@ class Event extends Component {
       });
   }
 
-  deleteEvent = (e) => {
-    e.preventDefault()
-    console.log("deleting")
+  deleteEvent = e => {
+    e.preventDefault();
+    console.log("deleting");
     let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
-      .delete(url + "/api/events/delete/" + extension, {headers: {Authorization: "bearer " + localStorage.token}})
-      .then(res => this.setState({event: res.data}))
+      .delete(url + "/api/events/delete/" + extension, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      })
+      .then(res => this.setState({ event: res.data }))
       .then(_ => this.props.history.push("/search/events"))
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  handleEditForm = (e) => {
-    e.preventDefault()
-    console.log("editing")
+  handleEditForm = e => {
+    e.preventDefault();
+    console.log("editing");
     let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
-      .put(url + "/api/events/edit/" + extension, {headers: {Authorization: "bearer " + localStorage.token}})
+      .put(url + "/api/events/edit/" + extension, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      })
       .then(_ => this.props.history.push("/search/events"))
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   openEditModal = () => {
-    this.setState({editIsOpen: true});
-  }
+    this.setState({ editIsOpen: true });
+  };
 
   openDeleteModal = () => {
-      this.setState({deleteIsOpen: true});
-  }
+    this.setState({ deleteIsOpen: true });
+  };
 
   closeEditModal = () => {
-      this.setState({editIsOpen: false});
-  }
+    this.setState({ editIsOpen: false });
+  };
 
   closeDeleteModal = () => {
-      this.setState({deleteIsOpen: false});
-  }
+    this.setState({ deleteIsOpen: false });
+  };
 
   render() {
     return (
@@ -134,62 +135,113 @@ class Event extends Component {
             )}
           </div>
           <div className="event-buttons-container">
-            <input onClick={this.openEditModal} type="button" className="button" value="Edit" />
-            <input onClick={this.openDeleteModal} ype="button" className="button" value="Delete" />
-            <input onClick={this.handleAttend} type="button" className="button" value="Attend" />
+            <input
+              onClick={this.openEditModal}
+              type="button"
+              className="button"
+              value="Edit"
+            />
+            <input
+              onClick={this.openDeleteModal}
+              ype="button"
+              className="button"
+              value="Delete"
+            />
+            <input
+              onClick={this.handleAttend}
+              type="button"
+              className="button"
+              value="Attend"
+            />
           </div>
           <div className="event-attending-container" />
         </div>
-        <Modal 
-            className="modal" 
-            isOpen={this.state.editIsOpen} 
-            onRequestClose={this.closeEditModal}
-            style={customStyles}
+        <Modal
+          className="modal"
+          isOpen={this.state.editIsOpen}
+          onRequestClose={this.closeEditModal}
+          style={customStyles}
         >
           <form className="host-form" onSubmit={this.handleEditForm}>
-            Name: <input type="text" defaultValue={this.state.event.name} className="name host-input" name="name" />
+            Name:{" "}
+            <input
+              type="text"
+              defaultValue={this.state.event.name}
+              className="name host-input"
+              name="name"
+            />
             Game:
             <select className="game host-input" name="gameList">
-              <option value="" disabled selected>Select an option</option>
+              <option value="" disabled selected>
+                Select an option
+              </option>
               {this.props.games.map((game, index) => {
-                if(this.state.event.game) {
-                  if(game._id === this.state.event.game._id) {
-                  return <option key={index} selected="selected" value={game._id}>{game.name}</option>
-                } else {
-                  return <option key={index} value={game._id}>{game.name}</option>
+                if (this.state.event.game) {
+                  if (game._id === this.state.event.game._id) {
+                    return (
+                      <option key={index} selected="selected" value={game._id}>
+                        {game.name}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={index} value={game._id}>
+                        {game.name}
+                      </option>
+                    );
+                  }
                 }
-                }
-                
               })}
             </select>
             Location:
-            <input type="text" defaultValue={this.state.event.location} className="location host-input" name="location"/>
+            <input
+              type="text"
+              defaultValue={this.state.event.location}
+              className="location host-input"
+              name="location"
+            />
             Type:
             <select className="type host-input" name="typeList">
-              <option value="" disabled selected>Select an option</option>
+              <option value="" disabled selected>
+                Select an option
+              </option>
               <option>Indoor</option>
               <option>Outdoor</option>
             </select>
             Participants:
-            <input type="text" defaultValue={this.state.event.participants} className="participants host-input" name="participants"/>
+            <input
+              type="text"
+              defaultValue={this.state.event.participants}
+              className="participants host-input"
+              name="participants"
+            />
             Description:
-            <textarea className="description host-input" defaultValue={this.state.event.description} rows="10" name="description" />
-            <input type="submit" className="submit" value="Submit"/>
+            <textarea
+              className="description host-input"
+              defaultValue={this.state.event.description}
+              rows="10"
+              name="description"
+            />
+            <input type="submit" className="submit" value="Submit" />
           </form>
         </Modal>
 
-        <Modal 
-            className="modal" 
-            isOpen={this.state.deleteIsOpen} 
-            // onAfterOpen={this.afterOpenModal} 
-            onRequestClose={this.closeDeleteModal}
-            style={customStyles}
+        <Modal
+          className="modal"
+          isOpen={this.state.deleteIsOpen}
+          // onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeDeleteModal}
+          style={customStyles}
         >
-            <span>Are you sure?</span>
-            <div className="yes-no-button-container">
-                <button className="yes-no-buttons" onClick={this.deleteEvent}>Yes</button>
-                <button className="yes-no-buttons" onClick={this.closeDeleteModal}>No</button>
-            </div>
+          <span>Are you sure?</span>
+          <div className="yes-no-button-container">
+            <button className="yes-no-buttons" onClick={this.deleteEvent}>
+              Yes
+            </button>
+            <button className="yes-no-buttons" onClick={this.closeDeleteModal}>
+              No
+            </button>
+          </div>
         </Modal>
       </div>
     );
