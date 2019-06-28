@@ -6,8 +6,6 @@ Sometimes people to host an event but can't think of a party game to feature. Al
 
 We broke down our models into three categories. A game model, an event model and a user model. We eventually want to add two bonus features where a user can search by what supplies they have and see a list of games they can play with the supplies on hand, and add authentication where a user can create games, host events and participate in events. This is why they're blocked off by a line, to show they're planned for when we get the MVP done.
 
-
-
 ## ERD
 
 ![ERD diagram](https://github.com/ismailshak/rec-creation/blob/master/planning/img/API%20Flowchart%20Project%203.png "ERD Diagram")
@@ -25,3 +23,10 @@ Games can have none or multiple events.
 ## Wireframe
 
 https://wireframe.cc/pro/pp/79ee610b6256871
+
+## Design Mockups
+
+![mockup1](https://github.com/ismailshak/rec-creation/blob/master/planning/img/mockup1.png "mockup1")
+![mockup2](https://github.com/ismailshak/rec-creation/blob/master/planning/img/mockup2.png "mockup2")
+![mockup3](https://github.com/ismailshak/rec-creation/blob/master/planning/img/mockup3.png "mockup3")
+![mockup4](https://github.com/ismailshak/rec-creation/blob/master/planning/img/mockup1.png "mockup4")
