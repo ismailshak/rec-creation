@@ -44,15 +44,19 @@ class App extends Component {
   }
 
   handleSignup = obj => {
-    axios.post(url + "/api/users/signup", obj).then(res => {
-      localStorage.token = res.data.token;
-      localStorage.userID = res.data.userID;
-      this.setState({
-        isLoggedIn: true,
-        userID: res.data.userID,
-        name: res.data.name
+    axios
+      .post(url + "/api/users/signup", obj)
+      .then(res => {
+        localStorage.token = res.data.token;
+        localStorage.userID = res.data.userID;
+        this.setState({
+          userID: res.data.userID,
+          name: res.data.name
+        });
+      })
+      .then(_ => {
+        this.props.history.push("/login");
       });
-    });
     // axios.get(url+"/id/"+localStorage.userID)
     // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
     // .catch(err => console.log(err));
