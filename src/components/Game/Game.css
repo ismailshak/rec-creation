@@ -11,22 +11,11 @@
   background-color: white;
   width: 80%;
   height: 75%;
-  position: relative;
   display: flex;
   flex-direction: row;
-  align-items: baseline;
-  justify-content: center;
-  align-content: space-around;
-  overflow: auto;
+  justify-content: space-around;
 }
 .game-game-container {
-  margin-top: 3rem;
-  width: 65%;
-  height: 75%;
-  position: absolute;
-  top: 100px;
-  left: 30px;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -38,21 +27,18 @@
 .game-info-container {
   width: 90%;
   height: 85%;
-  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-around;
-  align-content: flex-start;
+  /* align-content: flex-start; */
 }
 
 .game-event-container {
-  width: 250px;
+  margin-top: 3rem;
+  width: 30%;
   height: 75%;
-  /* display: flex; */
-  position: absolute;
-  top: 30px;
-  right: 50px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -60,13 +46,16 @@
 }
 
 .game-list {
-  list-style: none;
-  padding-left: 0%;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  grid-template-rows: repeat(autofill, 40%)
   /* padding-top: ; */
 }
 .event-list-container {
   text-align: center;
-  padding: 10px 0 0 10px;
+  margin-top: 1rem;
+
+  overflow-y: scroll;
 }
 
 .image {
@@ -99,4 +88,31 @@ h3 {
   cursor: pointer;
   min-width: 25%;
   font-weight: 800;
+}
+
+.game-open-event {
+  color: green;
+  margin-right: 1rem;
+}
+
+.game-closed-event {
+  color: red;
+  margin-right: 1rem;
+}
+
+.game-event-link {
+  margin-top: 1rem;
+  /* border-bottom: 0.5px solid black; */
+  padding-bottom: 1rem;
+  text-decoration: none;
+  color: black
+}
+
+.game-img-title {
+  display: flex;
+  justify-content: space-around;
+}
+
+.game-img-title h3 {
+  margin-left: 1rem;
 }

@@ -3,6 +3,8 @@ import "./Event.css";
 import axios from "axios";
 import Modal from 'react-modal'
 
+let url = "https://rec-creation-api.herokuapp.com";
+
 const customStyles = {
   content : {
       position: 'absolute',
@@ -23,12 +25,12 @@ class Event extends Component {
     this.state = {
       event: {},
       editIsOpen: false,
-      deleteIsOpen: false
+      deleteIsOpen: false,
+      errorText: ""
     };
   }
 
   componentDidMount() {
-    let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
       .get(url + "/api/events/id/" + extension)
@@ -41,7 +43,7 @@ class Event extends Component {
   deleteEvent = e => {
     e.preventDefault();
     console.log("deleting");
-    let url = "https://rec-creation-api.herokuapp.com";
+    
     let extension = this.props.match.params.id;
     axios
       .delete(url + "/api/events/delete/" + extension, {
@@ -53,6 +55,47 @@ class Event extends Component {
         console.log(err);
       });
   };
+
+   handleAttend = () => {
+    let returnedArray = this.state.event.attendees.filter(user => {
+      return user._id === localStorage.userID
+    })
+    if(returnedArray.length !== 0) {
+       if(!returnedArray[0]._id === localStorage.userID && this.state.event.attendees.length <= this.state.event.participants){
+      let extension = `${localStorage.userID}/${this.state.event._id}`
+      axios.put(url+"/api/events/addAttendee/"+extension, {}, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      }).then(res => {
+        if(res.data.attendees.length === res.data.participants) {
+          axios.put(url+"/api/events/edit/"+this.state.event._id, {status: false}, 
+          {headers: { Authorization: "bearer " + localStorage.token }})
+          .then(res=>this.setState({event: res.data}))
+        } else this.setState({event: res.data})
+      })
+    }
+    } else if(this.state.event.attendees.length < this.state.event.participants) {
+      let extension = `${localStorage.userID}/${this.state.event._id}`
+      axios.put(url+"/api/events/addAttendee/"+extension, {}, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      }).then(res => {
+        if(res.data.attendees.length === res.data.participants) {
+          axios.put(url+"/api/events/edit/"+this.state.event._id, {status: false}, 
+          {headers: { Authorization: "bearer " + localStorage.token }})
+          .then(res=>this.setState({event: res.data}))
+        } else this.setState({event: res.data})
+      })
+    }
+   
+    if(returnedArray.length !== 0) {
+      if(returnedArray[0]._id === localStorage.userID) {
+      this.setState({errorText: "You've already RSVP'd!"})
+      } 
+    }
+    if(this.state.event.attendees.length >= this.state.event.participants) {
+      this.setState({errorText: "Sorry, event reached max capacity!"})
+    }
+    
+  }
 
   handleEditForm = e => {
     e.preventDefault();
@@ -70,13 +113,13 @@ class Event extends Component {
     };
 
     console.log(returnedForm);
-    let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
       .put(url + "/api/events/edit/" + extension, returnedForm, {
         headers: { Authorization: "bearer " + localStorage.token }
       })
-      .then(_ => this.props.history.push("/search/events"))
+      .then(res => this.setState({event: res.data}))
+      .then(_ => this.closeEditModal())
       .catch(err => {
         console.log(err);
       });
@@ -110,13 +153,13 @@ class Event extends Component {
             <input
               onClick={this.openEditModal}
               type="button"
-              className="button"
+              className="submit"
               value="Edit"
             />
             <input
               onClick={this.openDeleteModal}
               ype="button"
-              className="button"
+              className="submit"
               value="Delete"
             />
           </div>
@@ -127,7 +170,7 @@ class Event extends Component {
             <input
               onClick={this.handleAttend}
               type="button"
-              className="button"
+              className="submit"
               value="Attend"
             />
           </div>
@@ -139,7 +182,6 @@ class Event extends Component {
     return (
       <div className="Event">
         <div className="event-container">
-          <div className="event-event-container">
             {this.state.event.name && (
               <div className="event-info-container">
                 <h1>{this.state.event.name}!</h1>
@@ -183,9 +225,14 @@ class Event extends Component {
                 </ul>
               </div>
             )}
-          </div>
           {this.renderButtons()}
-          <div className="event-attending-container" />
+          <div className="event-attending-container">
+            <span className="event-attending-title">{"Users attending this event:"}</span>
+            <span className="host-error">{this.state.errorText}</span>
+            {this.state.event.name && this.state.event.attendees.map(user => {
+              return <span className="event-attending-users">{user.firstName + " " + user.lastName}</span>
+            })}
+          </div>
         </div>
         <Modal
           className="modal"
@@ -266,10 +313,10 @@ class Event extends Component {
         >
           <span>Are you sure?</span>
           <div className="yes-no-button-container">
-            <button className="yes-no-buttons" onClick={this.deleteEvent}>
+            <button className="yes-no-buttons submit" onClick={this.deleteEvent}>
               Yes
             </button>
-            <button className="yes-no-buttons" onClick={this.closeDeleteModal}>
+            <button className="yes-no-buttons submit" onClick={this.closeDeleteModal}>
               No
             </button>
           </div>

@@ -1,12 +1,29 @@
 import React, { Component } from "react";
+import {Link} from 'react-router-dom'
 import "./Game.css";
 import axios from "axios";
+import Modal from 'react-modal'
+
+const customStyles = {
+  content : {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: '75%',
+      width: '40%'
+  }
+};
 
 class Game extends Component {
   constructor() {
     super();
     this.state = {
-      gameObj: {}
+      gameObj: {},
+      modalIsOpen: false
     };
   }
 
@@ -21,6 +38,14 @@ class Game extends Component {
       });
   }
 
+  openModal = () => {
+    this.setState({ modalIsOpen: true });
+  };
+
+  closeModal = () => {
+    this.setState({ modalIsOpen: false });
+  };
+
   render() {
     return (
       <div className="Game">
@@ -28,32 +53,21 @@ class Game extends Component {
           <div className="game-game-container">
             {this.state.gameObj.name && (
               <div className="game-info-container">
+                <div className="game-img-title">
                 <img
                   className="image"
                   src={this.state.gameObj.image}
                   alt="icon"
                 />
                 <h1>{this.state.gameObj.name}!</h1>
-                <ul className="game-list">
-                  <li>
-                    <span className="bold-font">
-                      <h3>Supplies Needed:</h3>
-                    </span>
-                    {this.state.gameObj.supplies}
-                  </li>
-                  <li>
-                    <span className="bold-font">
-                      <h3>Number of Player:</h3>
-                    </span>
-                    {this.state.gameObj.players}
-                  </li>
-                  <li>
-                    <span className="bold-font">
-                      <h3>Rules:</h3>
-                    </span>
-                    {this.state.gameObj.rules}
-                  </li>
-                </ul>
+                </div>
+                <div className="game-list">
+                  <span className="bold-font">Supplies Needed:</span>
+                  <span>{this.state.gameObj.supplies}</span>
+                  <span className="bold-font">Number of Player:</span>
+                  <span>{this.state.gameObj.players}</span>
+                  <button className="submit" onClick={this.openModal}>Rules</button>
+                </div>
               </div>
             )}
           </div>
@@ -64,13 +78,32 @@ class Game extends Component {
               <ul className="event-list">
                 {this.state.gameObj.events !== undefined
                   ? this.state.gameObj.events.map(event => {
-                      return <li>{event.name}</li>;
+                    if(event.status) {
+                      return <Link to={"/event/"+event._id}><li className="game-event-link"><i className="fas fa-lock-open game-open-event"></i>{event.name}</li></Link>;
+                    } else {
+                      return <Link to={"/event/"+event._id}><li className="game-event-link"><i className="fas fa-lock game-closed-event"></i>{event.name}</li></Link>;
+                    }
+                      
                     })
                   : ""}
               </ul>
             </div>
           </div>
         </div>
+        <Modal
+          className="modal"
+          isOpen={this.state.modalIsOpen}
+          // onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={customStyles}
+        >
+          <span>Rules:</span>
+          {this.state.gameObj.name && <div className="event-rules-text">
+            {this.state.gameObj.rules}
+          </div>}
+          
+          <button className="submit" onClick={this.closeModal}>Close</button>
+        </Modal>
       </div>
     );
   }
