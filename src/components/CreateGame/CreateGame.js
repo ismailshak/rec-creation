@@ -1,20 +1,26 @@
 import React, { Component } from "react";
 import "./CreateGame.css";
-import axios from 'axios'
+import axios from "axios";
 
 class CreateGame extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      isValid: true,
-    }
+      isValid: true
+    };
   }
 
   handleForm = e => {
-    e.preventDefault()
+    e.preventDefault();
     let t = e.target;
-    if(!t.name.value || !t.supplies.value || !t.players.value || !t.rules.value || !t.image.value) {
-      this.setState({isValid: false})
+    if (
+      !t.name.value ||
+      !t.supplies.value ||
+      !t.players.value ||
+      !t.rules.value ||
+      !t.image.value
+    ) {
+      this.setState({ isValid: false });
     } else {
       let returnedForm = {
         name: t.name.value,
@@ -24,13 +30,15 @@ class CreateGame extends Component {
         image: t.image.value
       };
       // console.log(returnedForm);
-      let url = "https://rec-creation-api.herokuapp.com/api/games"
+      let url = "https://rec-creation-api.herokuapp.com/api/games";
 
-      axios.post(url, returnedForm,  {headers: {Authorization: "bearer " + localStorage.token}})
+      axios
+        .post(url, returnedForm, {
+          headers: { Authorization: "bearer " + localStorage.token }
+        })
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
-   
   };
 
   render() {
@@ -39,17 +47,29 @@ class CreateGame extends Component {
         <div className="create-info-container">
           <div className="create-text-container">
             <h3>Submit A New Game! Fill out the form below.</h3>
-            {!this.state.isValid && <p className="create-error">fill out all the fields!</p>}
+            {!this.state.isValid && (
+              <p className="create-error">fill out all the fields!</p>
+            )}
           </div>
           <form className="create-form" onSubmit={this.handleForm}>
             Name:
             <input type="text" className="create-input" name="name" />
             Supplies:
-            <input type="text" className="create-input" name="supplies" placeholder="pen, paper, etc" />
+            <input
+              type="text"
+              className="create-input"
+              name="supplies"
+              placeholder="pen, paper, etc"
+            />
             Min. Players:
             <input type="text" className="create-input" name="players" />
             Image:
-            <input type="text" className="create-input" name="image" placeholder="enter image url" />
+            <input
+              type="text"
+              className="create-input"
+              name="image"
+              placeholder="enter image url"
+            />
             Rules:
             <textarea className="rules create-input" name="rules" />
             <input type="submit" className="submit" value="Submit" />

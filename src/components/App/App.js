@@ -41,17 +41,6 @@ class App extends Component {
       .catch(err => {
         console.log(err);
       });
-<<<<<<< HEAD
-    axios
-      .get(url + "/api/events")
-      .then(res => {
-        this.setState({ events: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-=======
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
   }
 
   handleSignup = obj => {
@@ -60,12 +49,8 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
-<<<<<<< HEAD
-        this.setState({
-=======
         localStorage.name = res.data.name;
-        this.setState({ 
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
+        this.setState({
           isLoggedIn: true,
           userID: res.data.userID
         });
@@ -82,16 +67,10 @@ class App extends Component {
         console.log(res);
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
-<<<<<<< HEAD
+        localStorage.name = res.data.name;
         this.setState({
           isLoggedIn: true,
           userID: res.data.userID
-=======
-        localStorage.name = res.data.name;
-        this.setState({ 
-          isLoggedIn: true, 
-          userID: res.data.userID 
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
         });
       })
       .catch(err => console.log(err));
@@ -135,7 +114,6 @@ class App extends Component {
             >
               Submit Game
             </Link>
-<<<<<<< HEAD
             {!this.state.isLoggedIn && (
               <Link to="/login" className="nav-buttons">
                 Login
@@ -147,28 +125,15 @@ class App extends Component {
               </Link>
             )}
             {this.state.isLoggedIn && (
-              <Link to="/user" className="nav-links">
-                <span className="nav-greeting">
-                  {"Hello, " + this.state.firstName}
-                </span>
-              </Link>
+              <span className="nav-greeting">
+                {"Hello, " + this.state.name}
+              </span>
             )}
             {this.state.isLoggedIn && (
               <Link onClick={this.handleLogout} to="/" className="nav-buttons">
                 Logout
               </Link>
             )}
-=======
-            {!this.state.isLoggedIn && <Link to="/login" className="nav-buttons">
-              Login
-            </Link>}
-            {!this.state.isLoggedIn && <Link to="/signup" className="nav-buttons">
-              Signup
-            </Link>}
-            {this.state.isLoggedIn && <span className="nav-greeting">{"Hello, "  + this.state.name }</span>}
-            {this.state.isLoggedIn && <Link onClick={this.handleLogout} to="/" className="nav-buttons">Logout</Link>}
-            
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
           </div>
         </nav>
         <Switch>
@@ -206,8 +171,11 @@ class App extends Component {
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
-<<<<<<< HEAD
-          <Route path="/event/:id" exact component={Event} />
+          <Route
+            path="/event/:id"
+            exact
+            render={props => <Event games={this.state.games} {...props} />}
+          />
           <Route
             path="/create-game"
             exact
@@ -231,12 +199,6 @@ class App extends Component {
               <Signup handleSignup={this.handleSignup} {...props} />
             )}
           />
-=======
-          <Route path="/event/:id" exact render={props => <Event games={this.state.games} {...props}/>} />
-          <Route path="/create-game" exact render={props => <CreateGame {...props}/>} />
-          <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
-          <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
->>>>>>> 0db769f5651247a8c297fbc9d7b30c7bef013037
           {this.state.games.length !== 0 && (
             <Route
               path="/"
