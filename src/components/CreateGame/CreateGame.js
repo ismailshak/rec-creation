@@ -35,6 +35,7 @@ class CreateGame extends Component {
         .post(url, returnedForm, {
           headers: { Authorization: "bearer " + localStorage.token }
         })
+        .then(_ => this.props.history.push("/search/games"))
         .catch(err => console.log(err));
     }
   };

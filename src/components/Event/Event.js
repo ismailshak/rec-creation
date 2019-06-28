@@ -188,12 +188,13 @@ class Event extends Component {
       } else
         return (
           <div className="event-buttons-container">
-            <input
+            <button
               onClick={this.handleAttend}
               type="button"
               className="submit"
-              value="Attend"
-            />
+            >
+              Attend
+            </button>
           </div>
         );
     }
@@ -251,9 +252,9 @@ class Event extends Component {
             <span className="event-attending-title">{"Users attending:"}</span>
             <span className="host-error">{this.state.errorText}</span>
             {this.state.event.name &&
-              this.state.event.attendees.map(user => {
+              this.state.event.attendees.map((user, index) => {
                 return (
-                  <span className="event-attending-users">
+                  <span className="event-attending-users" key={index}>
                     {user.firstName + " " + user.lastName}
                   </span>
                 );

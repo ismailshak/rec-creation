@@ -47,9 +47,11 @@ class User extends Component {
               </div>
               <div className="user-attending-containter">
                 <h3 className="event-type">Attending</h3>
-                {this.state.user.attending.map(attending => {
+                {this.state.user.attending.map((attending, index) => {
                   return (
-                    <div className="user-attending-list">{attending.name}</div>
+                    <div className="user-attending-list" key={index}>
+                      {attending.name}
+                    </div>
                   );
                 })}
               </div>

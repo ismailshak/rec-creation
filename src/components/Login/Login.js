@@ -21,7 +21,7 @@ class Login extends Component {
       };
       this.props.handleLogin(returnedObj);
       this.setState({ isValid: true });
-      this.props.history.goBack(-2);
+      this.props.history.push("/");
     }
   };
 
@@ -37,10 +37,10 @@ class Login extends Component {
           </div>
           <form className="login-form" onSubmit={this.handleForm}>
             Email:
-            <input class="login-input" type="text" name="email" />
+            <input className="login-input" type="text" name="email" />
             Password:
-            <input class="login-input" type="password" name="password" />
-            <input class="submit" type="submit" value="Login" />
+            <input className="login-input" type="password" name="password" />
+            <input className="submit" type="submit" value="Login" />
           </form>
         </div>
       </div>
