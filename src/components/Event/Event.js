@@ -1,21 +1,6 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
-import Modal from "react-modal";
-
-const customStyles = {
-  content: {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    height: "75%",
-    width: "40%"
-  }
-};
 
 class Event extends Component {
   constructor() {
@@ -56,11 +41,24 @@ class Event extends Component {
 
   handleEditForm = e => {
     e.preventDefault();
-    console.log("editing");
+    let t = e.target;
+
+    let returnedForm = {
+      name: t.name.value,
+      host: localStorage.userID,
+      location: t.location.value,
+      game: t.gameList.value,
+      type: t.typeList.value,
+      status: true,
+      participants: parseInt(t.participants.value),
+      description: t.description.value
+    };
+
+    console.log(returnedForm);
     let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
-      .put(url + "/api/events/edit/" + extension, {
+      .put(url + "/api/events/edit/" + extension, returnedForm, {
         headers: { Authorization: "bearer " + localStorage.token }
       })
       .then(_ => this.props.history.push("/search/events"))
@@ -83,6 +81,43 @@ class Event extends Component {
 
   closeDeleteModal = () => {
     this.setState({ deleteIsOpen: false });
+  };
+
+  renderButtons = () => {
+    console.log("render buttons");
+    if (this.state.event.name) {
+      if (
+        this.props.isLoggedIn &&
+        localStorage.userID === this.state.event.host._id
+      ) {
+        return (
+          <div className="event-buttons-container">
+            <input
+              onClick={this.openEditModal}
+              type="button"
+              className="button"
+              value="Edit"
+            />
+            <input
+              onClick={this.openDeleteModal}
+              ype="button"
+              className="button"
+              value="Delete"
+            />
+          </div>
+        );
+      } else
+        return (
+          <div className="event-buttons-container">
+            <input
+              onClick={this.handleAttend}
+              type="button"
+              className="button"
+              value="Attend"
+            />
+          </div>
+        );
+    }
   };
 
   render() {
@@ -134,26 +169,7 @@ class Event extends Component {
               </div>
             )}
           </div>
-          <div className="event-buttons-container">
-            <input
-              onClick={this.openEditModal}
-              type="button"
-              className="button"
-              value="Edit"
-            />
-            <input
-              onClick={this.openDeleteModal}
-              ype="button"
-              className="button"
-              value="Delete"
-            />
-            <input
-              onClick={this.handleAttend}
-              type="button"
-              className="button"
-              value="Attend"
-            />
-          </div>
+          {this.renderButtons()}
           <div className="event-attending-container" />
         </div>
         <Modal

@@ -43,22 +43,28 @@ class App extends Component {
       });
   }
 
-  handleSignup = obj => {
-    axios
-      .post(url + "/signup", obj)
+  
+
+  handleSignup = (obj) => {
+    
+    axios.post(url+"/api/users/signup", obj)
       .then(res => {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
+<<<<<<< HEAD
         localStorage.name = res.data.name;
+=======
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
         this.setState({
           isLoggedIn: true,
-          userID: res.data.userID
-        });
-      })
-      .get(url + "/id/" + localStorage.userID)
-      .then(res => console.log(res.data)) //this.setState({name: res.data.firstName}))
-      .catch(err => console.log(err));
-  };
+          userID: res.data.userID,
+          name: res.data.name
+        })
+      });
+      // axios.get(url+"/id/"+localStorage.userID)
+      // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
+      // .catch(err => console.log(err));
+    }
 
   handleLogin = obj => {
     axios
@@ -68,9 +74,16 @@ class App extends Component {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
         localStorage.name = res.data.name;
+<<<<<<< HEAD
         this.setState({
           isLoggedIn: true,
           userID: res.data.userID
+=======
+        this.setState({ 
+          isLoggedIn: true, 
+          userID: res.data.userID,
+          name: res.data.name 
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
         });
       })
       .catch(err => console.log(err));
@@ -171,11 +184,16 @@ class App extends Component {
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
+<<<<<<< HEAD
           <Route
             path="/event/:id"
             exact
             render={props => <Event games={this.state.games} {...props} />}
           />
+=======
+          <Route path="/event/:id" exact render={props => <Event games={this.state.games} isLoggedIn={this.state.isLoggedIn} {...props}/>} />
+          <Route path="/event/:id" exact component={Event} />
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
           <Route
             path="/create-game"
             exact
@@ -199,6 +217,12 @@ class App extends Component {
               <Signup handleSignup={this.handleSignup} {...props} />
             )}
           />
+<<<<<<< HEAD
+=======
+          <Route path="/create-game" exact render={props => <CreateGame {...props}/>} />
+          <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
+          <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
           {this.state.games.length !== 0 && (
             <Route
               path="/"
