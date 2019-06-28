@@ -43,25 +43,20 @@ class App extends Component {
       });
   }
 
-  
-
-  handleSignup = (obj) => {
-    
-    axios.post(url+"/api/users/signup", obj)
-      .then(res => {
-        localStorage.token = res.data.token;
-        localStorage.userID = res.data.userID;
-        localStorage.name = res.data.name;
-        this.setState({
-          isLoggedIn: true,
-          userID: res.data.userID,
-          name: res.data.name
-        })
+  handleSignup = obj => {
+    axios.post(url + "/api/users/signup", obj).then(res => {
+      localStorage.token = res.data.token;
+      localStorage.userID = res.data.userID;
+      this.setState({
+        isLoggedIn: true,
+        userID: res.data.userID,
+        name: res.data.name
       });
-      // axios.get(url+"/id/"+localStorage.userID)
-      // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
-      // .catch(err => console.log(err));
-    }
+    });
+    // axios.get(url+"/id/"+localStorage.userID)
+    // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
+    // .catch(err => console.log(err));
+  };
 
   handleLogin = obj => {
     axios
@@ -71,10 +66,10 @@ class App extends Component {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
         localStorage.name = res.data.name;
-        this.setState({ 
-          isLoggedIn: true, 
+        this.setState({
+          isLoggedIn: true,
           userID: res.data.userID,
-          name: res.data.name 
+          name: res.data.name
         });
       })
       .catch(err => console.log(err));
@@ -129,11 +124,9 @@ class App extends Component {
               </Link>
             )}
             {this.state.isLoggedIn && (
-              <Link to="/user" className="nav-links">
-                <span className="nav-greeting">
-                  {"Hello, " + this.state.name}
-                </span>
-              </Link>
+              <span className="nav-greeting">
+                {"Hello, " + this.state.name}
+              </span>
             )}
             {this.state.isLoggedIn && (
               <Link onClick={this.handleLogout} to="/" className="nav-buttons">
@@ -177,8 +170,41 @@ class App extends Component {
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
-          <Route path="/event/:id" exact render={props => <Event games={this.state.games} isLoggedIn={this.state.isLoggedIn} {...props}/>} />
+          <Route
+            path="/event/:id"
+            exact
+            render={props => (
+              <Event
+                games={this.state.games}
+                isLoggedIn={this.state.isLoggedIn}
+                {...props}
+              />
+            )}
+          />
           <Route path="/event/:id" exact component={Event} />
+          <Route
+            path="/create-game"
+            exact
+            render={props => <CreateGame {...props} />}
+          />
+          <Route
+            path="/login"
+            exact
+            render={props => (
+              <Login
+                handleLogin={this.handleLogin}
+                isLoggedIn={this.state.isLoggedIn}
+                {...props}
+              />
+            )}
+          />
+          <Route
+            path="/signup"
+            exact
+            render={props => (
+              <Signup handleSignup={this.handleSignup} {...props} />
+            )}
+          />
           <Route
             path="/create-game"
             exact
