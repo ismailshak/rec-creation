@@ -52,9 +52,13 @@ class App extends Component {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
 <<<<<<< HEAD
+<<<<<<< HEAD
         localStorage.name = res.data.name;
 =======
 >>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
+=======
+        localStorage.name = res.data.name;
+>>>>>>> refs/remotes/origin/master
         this.setState({
           isLoggedIn: true,
           userID: res.data.userID,
@@ -138,9 +142,17 @@ class App extends Component {
               </Link>
             )}
             {this.state.isLoggedIn && (
+<<<<<<< HEAD
               <span className="nav-greeting">
                 {"Hello, " + this.state.name}
               </span>
+=======
+              <Link to="/user" className="nav-links">
+                <span className="nav-greeting">
+                  {"Hello, " + this.state.name}
+                </span>
+              </Link>
+>>>>>>> refs/remotes/origin/master
             )}
             {this.state.isLoggedIn && (
               <Link onClick={this.handleLogout} to="/" className="nav-buttons">
