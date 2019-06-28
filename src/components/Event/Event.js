@@ -251,9 +251,7 @@ class Event extends Component {
           )}
           {this.renderButtons()}
           <div className="event-attending-container">
-            <span className="event-attending-title">
-              {"Users attending this event:"}
-            </span>
+            <span className="event-attending-title">{"Users attending:"}</span>
             <span className="host-error">{this.state.errorText}</span>
             {this.state.event.name &&
               this.state.event.attendees.map(user => {
