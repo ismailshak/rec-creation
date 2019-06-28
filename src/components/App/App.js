@@ -51,6 +51,7 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
+        localStorage.name = res.data.name;
         this.setState({
           isLoggedIn: true,
           userID: res.data.userID,
@@ -130,7 +131,7 @@ class App extends Component {
             {this.state.isLoggedIn && (
               <Link to="/user" className="nav-links">
                 <span className="nav-greeting">
-                  {"Hello, " + this.state.firstName}
+                  {"Hello, " + this.state.name}
                 </span>
               </Link>
             )}

@@ -1,6 +1,21 @@
 import React, { Component } from "react";
 import "./Event.css";
 import axios from "axios";
+import Modal from 'react-modal'
+
+const customStyles = {
+  content : {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+      height: '75%',
+      width: '40%'
+  }
+};
 
 class Event extends Component {
   constructor() {
