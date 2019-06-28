@@ -49,6 +49,10 @@
   align-items: center;
 }
 
+.create-text-container h3 {
+  text-align: center;
+}
+
 .create-buttons-container {
   display: flex;
   justify-content: center;
