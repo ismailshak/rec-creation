@@ -11,7 +11,7 @@ We made an app so people can browse games and find/host events. This way they ca
 We built an API to interact with a list of games, events, and users and all of their properties.
 The API was created with Node.js, Express, MongoDB, and Mongoose. Postman was used for testing routes, locally, throughout development. And, ultimately the API was deployed via Heroku and the database was hosted on MongoDB Atlas.
 
-The back-end was extended by a front-end, created using React. This was deployed and hosted on Surge.
+The [back-end](https://github.com/ismailshak/rec-creation-api) was extended by a front-end, created using React. This was deployed and hosted on Surge.
 
 ## Dependencies
 
