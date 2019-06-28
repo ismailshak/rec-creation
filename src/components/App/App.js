@@ -54,9 +54,7 @@ class App extends Component {
           name: res.data.name
         });
       })
-      .then(_ => {
-        this.props.history.push("/login");
-      });
+      .then(_ => {});
     // axios.get(url+"/id/"+localStorage.userID)
     // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
     // .catch(err => console.log(err));
