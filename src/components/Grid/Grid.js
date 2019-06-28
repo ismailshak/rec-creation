@@ -36,7 +36,8 @@ class Grid extends Component {
                   className="grid-div-event"
                   key={index}
                 >
-                  <span className="grid-caption">{data.name}</span>
+                  <img src={logo} alt="logo" />
+                  <span className="grid-event-caption">{data.name}</span>
                 </div>
               );
             }
