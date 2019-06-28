@@ -2,19 +2,13 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./Search.css";
 import Grid from "../Grid/Grid";
-import axios from 'axios'
+import axios from "axios";
 
 class Search extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
-      data: props.data.map(item => {
-        return {
-          hidden: false,
-          ...item,
-        }
-      }),
       games: [],
       events: [],
       type: props.type,
@@ -23,50 +17,89 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    let url = "https://rec-creation-api.herokuapp.com"
+    let url = "https://rec-creation-api.herokuapp.com";
     axios
-    .get(url+"/api/games")
-    .then(res => {
-      this.setState({ games: res.data });
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  axios
-    .get(url+"/api/events")
-    .then(res => {
-      this.setState({ events: res.data });
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      .get(url + "/api/games")
+      .then(res => {
+        res.data.forEach(item => (item.hidden = false));
+        return res.data;
+      })
+      .then(final =>
+        this.setState({
+          games: final
+        })
+      )
+      .catch(err => {
+        console.log(err);
+      });
+    axios
+      .get(url + "/api/events")
+      .then(res => {
+        this.setState({ events: res.data });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
-  handleChange = (event) => {
-    console.log(event.target.value)
-    let data = this.state.data
-    for(let i = 0; i < data.length; i++) {
-      if(data[i].person.indexOf(event.target.value) !== -1) {
-        data[i].hidden = false;
-      } else {
-        data[i].hidden = true;
+  handleChange = event => {
+    const target = event.target;
+    const value = target.value;
+    let arr = this.state.games;
+    // let typed user;
+
+    if (value === "") {
+      console.log("empty input");
+      arr.forEach(game => (game.hidden = false));
+      this.setState({ games: arr });
+    } else {
+      console.log("changing hidden");
+      arr.forEach(game => (game.hidden = true));
+      this.setState({ games: arr });
+    }
+
+    // console.log(value);
+    for (let i = 0; i < arr.length; i++) {
+      // console.log(arr[i].name, value);
+      if (arr[i].name === value) {
+        console.log("found");
+        arr[i].hidden = false;
       }
     }
-    this.setState({
-      searchInput: event.target.value
-    })
-  }
+    this.setState({ games: arr });
+  };
 
   render() {
     return (
       <div className="Search">
         <div className="search-header-container">
-          <h3 className="search-text">{"List of our "+this.state.type+":"}</h3>
-          <input className="search-input" type="text" name="search" onChange={this.handleChange}/>
+          <h3 className="search-text">
+            {"List of our " + this.state.type + ":"}
+          </h3>
+          <input
+            className="search-input"
+            type="text"
+            name="search"
+            onChange={this.handleChange}
+          />
         </div>
-        {this.state.type === "games" 
-        ? <Route render={props => <Grid data={this.state.games} type={this.state.type} {...props}/>} /> 
-        : <Route render={props => <Grid data={this.state.events} type={this.state.type} {...props}/>} />}
+        {this.state.type === "games" ? (
+          <Route
+            render={props => (
+              <Grid data={this.state.games} type={this.state.type} {...props} />
+            )}
+          />
+        ) : (
+          <Route
+            render={props => (
+              <Grid
+                data={this.state.events}
+                type={this.state.type}
+                {...props}
+              />
+            )}
+          />
+        )}
       </div>
     );
   }

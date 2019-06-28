@@ -62,13 +62,23 @@ class Game extends Component {
                   <h1>{this.state.gameObj.name}!</h1>
                 </div>
                 <div className="game-list">
-                  <span className="bold-font">Supplies Needed:</span>
-                  <span>{this.state.gameObj.supplies}</span>
-                  <span className="bold-font">Number of Player:</span>
-                  <span>{this.state.gameObj.players}</span>
-                  <button className="submit" onClick={this.openModal}>
-                    Rules
-                  </button>
+                  <div>
+                    <span className="bold-font">Supplies Needed:</span>
+                  </div>
+                  <div>
+                    <span>{this.state.gameObj.supplies}</span>
+                  </div>
+                  <div>
+                    <span className="bold-font">Number of Player:</span>
+                  </div>
+                  <div>
+                    <span>{this.state.gameObj.players}</span>
+                  </div>
+                  <div className="button-game-container">
+                    <button className="button-game" onClick={this.openModal}>
+                      Rules
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
@@ -84,7 +94,10 @@ class Game extends Component {
                         return (
                           <Link to={"/event/" + event._id}>
                             <li className="game-event-link">
-                              <i className="fas fa-lock-open game-open-event" />
+                              <i
+                                className="fas fa-circle
+                                game-open-event"
+                              />
                               {event.name}
                             </li>
                           </Link>
