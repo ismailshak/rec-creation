@@ -8,6 +8,7 @@
 }
 
 .create-info-container {
+  border-radius: 10px;
   margin-top: 3rem;
   background-color: white;
   width: 40%;

@@ -124,9 +124,11 @@ class App extends Component {
               </Link>
             )}
             {this.state.isLoggedIn && (
-              <span className="nav-greeting">
-                {"Hello, " + this.state.name}
-              </span>
+              <Link to="/user">
+                <span className="nav-greeting">
+                  {"Hello, " + this.state.name}
+                </span>
+              </Link>
             )}
             {this.state.isLoggedIn && (
               <Link onClick={this.handleLogout} to="/" className="nav-buttons">

@@ -8,6 +8,7 @@
 }
 
 .host-info-container {
+  border-radius: 10px;
   margin-top: 3rem;
   background-color: white;
   width: 40%;
@@ -41,7 +42,7 @@
   text-align: left; */
 }
 
-.host-input {  
+.host-input {
   margin-left: 1rem;
   margin-bottom: 1rem;
   /* display: inline-block; */
