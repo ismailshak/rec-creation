@@ -17,18 +17,6 @@ class Grid extends Component {
         <div className="grid-div-container">
           {this.props.data.map((data, index) => {
             if (this.props.type === "games") {
-<<<<<<< HEAD
-              return (
-                <div
-                  onClick={() => this.handleClick(data._id)}
-                  className="grid-div"
-                  key={index}
-                >
-                  <img src={data.image} alt={data.name} />
-                  <span className="grid-caption">{data.name}</span>
-                </div>
-              );
-=======
               if (data.hidden === false) {
                 return (
                   <div
@@ -41,7 +29,6 @@ class Grid extends Component {
                   </div>
                 );
               }
->>>>>>> 6d97071a491e4e2dbd4a68c396bab7279d92a436
             } else {
               return (
                 <div
@@ -49,12 +36,7 @@ class Grid extends Component {
                   className="grid-div-event"
                   key={index}
                 >
-<<<<<<< HEAD
-                  <img src={logo} alt="logo" />
-                  <span className="grid-event-caption">{data.name}</span>
-=======
                   <span className="grid-caption">{data.name}</span>
->>>>>>> 6d97071a491e4e2dbd4a68c396bab7279d92a436
                 </div>
               );
             }
