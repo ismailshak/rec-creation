@@ -23,7 +23,7 @@ class Event extends Component {
     this.state = {
       event: {},
       editIsOpen: false,
-      deleteIsOpen: false,
+      deleteIsOpen: false
     };
   }
 
@@ -38,76 +38,102 @@ class Event extends Component {
       });
   }
 
-  deleteEvent = (e) => {
-    e.preventDefault()
-    console.log("deleting")
+  deleteEvent = e => {
+    e.preventDefault();
+    console.log("deleting");
     let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
-      .delete(url + "/api/events/delete/" + extension, {headers: {Authorization: "bearer " + localStorage.token}})
-      .then(res => this.setState({event: res.data}))
+      .delete(url + "/api/events/delete/" + extension, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      })
+      .then(res => this.setState({ event: res.data }))
       .then(_ => this.props.history.push("/search/events"))
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
-  handleEditForm = (e) => {
-    e.preventDefault()
-    let t = e.target
+  handleEditForm = e => {
+    e.preventDefault();
+    let t = e.target;
 
     let returnedForm = {
-      "name": t.name.value,
-      "host": localStorage.userID,
-      "location": t.location.value,
-      "game": t.gameList.value,
-      "type": t.typeList.value,
-      "status": true,
-      "participants": parseInt(t.participants.value),
-      "description": t.description.value
-    }
-    
-    console.log(returnedForm)
+      name: t.name.value,
+      host: localStorage.userID,
+      location: t.location.value,
+      game: t.gameList.value,
+      type: t.typeList.value,
+      status: true,
+      participants: parseInt(t.participants.value),
+      description: t.description.value
+    };
+
+    console.log(returnedForm);
     let url = "https://rec-creation-api.herokuapp.com";
     let extension = this.props.match.params.id;
     axios
-      .put(url + "/api/events/edit/" + extension, returnedForm, {headers: {Authorization: "bearer " + localStorage.token}})
+      .put(url + "/api/events/edit/" + extension, returnedForm, {
+        headers: { Authorization: "bearer " + localStorage.token }
+      })
       .then(_ => this.props.history.push("/search/events"))
       .catch(err => {
         console.log(err);
       });
-  }
+  };
 
   openEditModal = () => {
-    this.setState({editIsOpen: true});
-  }
+    this.setState({ editIsOpen: true });
+  };
 
   openDeleteModal = () => {
-      this.setState({deleteIsOpen: true});
-  }
+    this.setState({ deleteIsOpen: true });
+  };
 
   closeEditModal = () => {
-      this.setState({editIsOpen: false});
-  }
+    this.setState({ editIsOpen: false });
+  };
 
   closeDeleteModal = () => {
-      this.setState({deleteIsOpen: false});
-  }
+    this.setState({ deleteIsOpen: false });
+  };
 
   renderButtons = () => {
-    console.log("render buttons")
-    if(this.state.event.name) {
-      if(this.props.isLoggedIn && localStorage.userID === this.state.event.host._id) {
-      return (<div className="event-buttons-container">
-      <input onClick={this.openEditModal} type="button" className="button" value="Edit" />
-      <input onClick={this.openDeleteModal} ype="button" className="button" value="Delete" />
-    </div>)
-    } else return (<div className="event-buttons-container">
-    <input onClick={this.handleAttend} type="button" className="button" value="Attend" />
-  </div>)
-  }
+    console.log("render buttons");
+    if (this.state.event.name) {
+      if (
+        this.props.isLoggedIn &&
+        localStorage.userID === this.state.event.host._id
+      ) {
+        return (
+          <div className="event-buttons-container">
+            <input
+              onClick={this.openEditModal}
+              type="button"
+              className="button"
+              value="Edit"
+            />
+            <input
+              onClick={this.openDeleteModal}
+              ype="button"
+              className="button"
+              value="Delete"
+            />
+          </div>
+        );
+      } else
+        return (
+          <div className="event-buttons-container">
+            <input
+              onClick={this.handleAttend}
+              type="button"
+              className="button"
+              value="Attend"
+            />
+          </div>
+        );
     }
-    
+  };
 
   render() {
     return (
@@ -161,56 +187,92 @@ class Event extends Component {
           {this.renderButtons()}
           <div className="event-attending-container" />
         </div>
-        <Modal 
-            className="modal" 
-            isOpen={this.state.editIsOpen} 
-            onRequestClose={this.closeEditModal}
-            style={customStyles}
+        <Modal
+          className="modal"
+          isOpen={this.state.editIsOpen}
+          onRequestClose={this.closeEditModal}
+          style={customStyles}
         >
           <form className="host-form" onSubmit={this.handleEditForm}>
-            Name: <input type="text" defaultValue={this.state.event.name} className="name host-input" name="name" />
+            Name:{" "}
+            <input
+              type="text"
+              defaultValue={this.state.event.name}
+              className="name host-input"
+              name="name"
+            />
             Game:
             <select className="game host-input" name="gameList">
-              <option value="" disabled selected>Select an option</option>
+              <option value="" disabled selected>
+                Select an option
+              </option>
               {this.props.games.map((game, index) => {
-                if(this.state.event.game) {
-                  if(game._id === this.state.event.game._id) {
-                  return <option key={index} selected="selected" value={game._id}>{game.name}</option>
-                } else {
-                  return <option key={index} value={game._id}>{game.name}</option>
+                if (this.state.event.game) {
+                  if (game._id === this.state.event.game._id) {
+                    return (
+                      <option key={index} selected="selected" value={game._id}>
+                        {game.name}
+                      </option>
+                    );
+                  } else {
+                    return (
+                      <option key={index} value={game._id}>
+                        {game.name}
+                      </option>
+                    );
+                  }
                 }
-                }
-                
               })}
             </select>
             Location:
-            <input type="text" defaultValue={this.state.event.location} className="location host-input" name="location"/>
+            <input
+              type="text"
+              defaultValue={this.state.event.location}
+              className="location host-input"
+              name="location"
+            />
             Type:
             <select className="type host-input" name="typeList">
-              <option value="" disabled selected>Select an option</option>
+              <option value="" disabled selected>
+                Select an option
+              </option>
               <option>Indoor</option>
               <option>Outdoor</option>
             </select>
             Participants:
-            <input type="text" defaultValue={this.state.event.participants} className="participants host-input" name="participants"/>
+            <input
+              type="text"
+              defaultValue={this.state.event.participants}
+              className="participants host-input"
+              name="participants"
+            />
             Description:
-            <textarea className="description host-input" defaultValue={this.state.event.description} rows="10" name="description" />
-            <input type="submit" className="submit" value="Submit"/>
+            <textarea
+              className="description host-input"
+              defaultValue={this.state.event.description}
+              rows="10"
+              name="description"
+            />
+            <input type="submit" className="submit" value="Submit" />
           </form>
         </Modal>
 
-        <Modal 
-            className="modal" 
-            isOpen={this.state.deleteIsOpen} 
-            // onAfterOpen={this.afterOpenModal} 
-            onRequestClose={this.closeDeleteModal}
-            style={customStyles}
+        <Modal
+          className="modal"
+          isOpen={this.state.deleteIsOpen}
+          // onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeDeleteModal}
+          style={customStyles}
         >
-            <span>Are you sure?</span>
-            <div className="yes-no-button-container">
-                <button className="yes-no-buttons" onClick={this.deleteEvent}>Yes</button>
-                <button className="yes-no-buttons" onClick={this.closeDeleteModal}>No</button>
-            </div>
+          <span>Are you sure?</span>
+          <div className="yes-no-button-container">
+            <button className="yes-no-buttons" onClick={this.deleteEvent}>
+              Yes
+            </button>
+            <button className="yes-no-buttons" onClick={this.closeDeleteModal}>
+              No
+            </button>
+          </div>
         </Modal>
       </div>
     );

@@ -51,7 +51,14 @@ class App extends Component {
       .then(res => {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
+<<<<<<< HEAD
+<<<<<<< HEAD
         localStorage.name = res.data.name;
+=======
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
+=======
+        localStorage.name = res.data.name;
+>>>>>>> refs/remotes/origin/master
         this.setState({
           isLoggedIn: true,
           userID: res.data.userID,
@@ -71,10 +78,16 @@ class App extends Component {
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
         localStorage.name = res.data.name;
+<<<<<<< HEAD
+        this.setState({
+          isLoggedIn: true,
+          userID: res.data.userID
+=======
         this.setState({ 
           isLoggedIn: true, 
           userID: res.data.userID,
           name: res.data.name 
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
         });
       })
       .catch(err => console.log(err));
@@ -129,11 +142,17 @@ class App extends Component {
               </Link>
             )}
             {this.state.isLoggedIn && (
+<<<<<<< HEAD
+              <span className="nav-greeting">
+                {"Hello, " + this.state.name}
+              </span>
+=======
               <Link to="/user" className="nav-links">
                 <span className="nav-greeting">
                   {"Hello, " + this.state.name}
                 </span>
               </Link>
+>>>>>>> refs/remotes/origin/master
             )}
             {this.state.isLoggedIn && (
               <Link onClick={this.handleLogout} to="/" className="nav-buttons">
@@ -177,8 +196,16 @@ class App extends Component {
           />
           <Route path="/game/:id" exact render={props => <Game {...props} />} />
           <Route path="/grid" exact component={Grid} />
+<<<<<<< HEAD
+          <Route
+            path="/event/:id"
+            exact
+            render={props => <Event games={this.state.games} {...props} />}
+          />
+=======
           <Route path="/event/:id" exact render={props => <Event games={this.state.games} isLoggedIn={this.state.isLoggedIn} {...props}/>} />
           <Route path="/event/:id" exact component={Event} />
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
           <Route
             path="/create-game"
             exact
@@ -202,9 +229,12 @@ class App extends Component {
               <Signup handleSignup={this.handleSignup} {...props} />
             )}
           />
+<<<<<<< HEAD
+=======
           <Route path="/create-game" exact render={props => <CreateGame {...props}/>} />
           <Route path="/login" exact render={props => <Login handleLogin={this.handleLogin} isLoggedIn={this.state.isLoggedIn} {...props}/>}/>
           <Route path="/signup" exact render={props => <Signup handleSignup={this.handleSignup} {...props}/>}/>
+>>>>>>> 82b25fd80d7bef02f122983d3b4da54280560016
           {this.state.games.length !== 0 && (
             <Route
               path="/"
