@@ -1,68 +1,55 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Rec|Creation Games and Events App
 
-## Available Scripts
+Families want to find fun games for parties, play-dates, and get-togethers that they might host. Or, sometimes they’d like to seek out events in which they’ll be able to participate in particular games so they can try them out.
 
-In the project directory, you can run:
+We made an app so people can browse games and find events. This way they can get active, have fun, and even meet new people.
 
-### `npm start`
+![Rec|Creation App ScreenShot](/planning/image/Home Screen Capture.png)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Built With:
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+We built an api to interact with a list of games, events, and users and all of their properties.
+The api was created with Node.js, Express, MongoDB, and Mongoose. Postman was used for testing routes throughout development. And, ultimately the api was deployed via Heroku and hosted by MongoDB Atlas.
 
-### `npm test`
+The backend was extended by a front end created with React.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Dependencies:
 
-### `npm run build`
+Back End: Express, Mongoose, Cors, Body-Parser, JWT-Simple, Passport, Passport-JWT
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Front End: Axios, React, React-Dom, React-Router-Dom, React-Scripts
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Features:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- User Authentication
+- Utilizes models for Games, Events, and Users with relevant data fields for each.
+- Incorporates complete CRUD functionality implemented with RESTful routes:
+  [Api Documentation](https://rec-creation-api.herokuapp.com/)
 
-### `npm run eject`
+## Site Map:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Home
+Games
+Individual Game
+Events
+Individual Event
+Host
+Log-In
+Signup
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributors:
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+This project was a collaboration involving the input of Ismail Eshakankiry, Sean Urbassik, and Jordan Mittelman.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+Initial planning involved coming up with a project idea and developing data models and wireframes, creating repositories, as well as designating workflow guidelines, responsibilities, and a work schedule. For more details, visit the planning directory's md file.
 
-## Learn More
+Overall, there was great teamwork and combined effort across all tasks. But, general roles were allocated as follows:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Ismail-
+Site Design Mockups, Frontend Manipulation and Styling, User Authentication, CRUD Implementation, Website Functionality and Troubleshooting
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Sean-
+Set up the React Components, Pages, and Overall Framework for the Front End
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Jordan-
+Wireframes, Data Collection, Back End / Build the Api, Apidocs
