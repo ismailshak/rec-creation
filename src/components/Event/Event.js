@@ -42,7 +42,6 @@ class Event extends Component {
 
   deleteEvent = e => {
     e.preventDefault();
-    console.log("deleting");
 
     let extension = this.props.match.params.id;
     axios
@@ -136,7 +135,6 @@ class Event extends Component {
       description: t.description.value
     };
 
-    console.log(returnedForm);
     let extension = this.props.match.params.id;
     axios
       .put(url + "/api/events/edit/" + extension, returnedForm, {
@@ -166,7 +164,6 @@ class Event extends Component {
   };
 
   renderButtons = () => {
-    console.log("render buttons");
     if (this.state.event.name) {
       if (
         this.props.isLoggedIn &&
@@ -336,7 +333,6 @@ class Event extends Component {
         <Modal
           className="modal"
           isOpen={this.state.deleteIsOpen}
-          // onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeDeleteModal}
           style={customStyles}
         >

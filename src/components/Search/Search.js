@@ -49,20 +49,15 @@ class Search extends Component {
     // let typed user;
 
     if (value === "") {
-      console.log("empty input");
       arr.forEach(game => (game.hidden = false));
       this.setState({ games: arr });
     } else {
-      console.log("changing hidden");
       arr.forEach(game => (game.hidden = true));
       this.setState({ games: arr });
     }
 
-    // console.log(value);
     for (let i = 0; i < arr.length; i++) {
-      // console.log(arr[i].name, value);
       if (arr[i].name === value) {
-        console.log("found");
         arr[i].hidden = false;
       }
     }

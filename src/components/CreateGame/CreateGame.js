@@ -29,14 +29,12 @@ class CreateGame extends Component {
         rules: t.rules.value,
         image: t.image.value
       };
-      // console.log(returnedForm);
       let url = "https://rec-creation-api.herokuapp.com/api/games";
 
       axios
         .post(url, returnedForm, {
           headers: { Authorization: "bearer " + localStorage.token }
         })
-        .then(res => console.log(res.data))
         .catch(err => console.log(err));
     }
   };

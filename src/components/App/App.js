@@ -27,8 +27,6 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    console.log(this.props);
-
     if (localStorage.token) {
       this.setState({ isLoggedIn: true });
     }
@@ -55,16 +53,12 @@ class App extends Component {
         });
       })
       .then(_ => {});
-    // axios.get(url+"/id/"+localStorage.userID)
-    // .then(res => console.log(res.data))//this.setState({name: res.data.firstName}))
-    // .catch(err => console.log(err));
   };
 
   handleLogin = obj => {
     axios
       .post(url + "/api/users/login", obj)
       .then(res => {
-        console.log(res);
         localStorage.token = res.data.token;
         localStorage.userID = res.data.userID;
         localStorage.name = res.data.name;

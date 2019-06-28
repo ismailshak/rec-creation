@@ -13,19 +13,6 @@ class Signup extends Component {
   handleForm = e => {
     e.preventDefault();
 
-    //     const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-    //     const passwordRegex = /^(?=.*\d).{4,16}$/
-    //     if(!emailRegex.test(this.state.email)) {
-    //     console.log((this.state.email))
-    //     this.setState({text: 'Invalid Email!'})
-    //     } else if(this.state.password !== this.state.passwordConfirm) {
-    //     this.setState({text: "Passwords don't match!"})
-    //     } else if(!passwordRegex.test(this.state.password)) {
-    //     this.setState({text: "Password must contain: Password must be between 4 and 16 digits long and include at least one numeric digit."})
-    //     } else {
-    //     this.setState({text: "Valid!"})
-    // }
-
     let t = e.target;
     if (
       !t.firstName.value ||
@@ -42,7 +29,6 @@ class Signup extends Component {
         email: t.email.value,
         password: t.password.value
       };
-      console.log(returnedObj);
       this.props.handleSignup(returnedObj);
       this.setState({ isValid: true });
       this.props.history.push("/login");

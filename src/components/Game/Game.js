@@ -121,7 +121,6 @@ class Game extends Component {
         <Modal
           className="modal"
           isOpen={this.state.modalIsOpen}
-          // onAfterOpen={this.afterOpenModal}
           onRequestClose={this.closeModal}
           style={customStyles}
         >

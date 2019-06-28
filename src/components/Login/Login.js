@@ -19,7 +19,6 @@ class Login extends Component {
         email: t.email.value,
         password: t.password.value
       };
-      console.log(returnedObj);
       this.props.handleLogin(returnedObj);
       this.setState({ isValid: true });
       this.props.history.goBack(-2);
