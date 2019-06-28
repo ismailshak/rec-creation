@@ -11,9 +11,9 @@ class Home extends Component {
           <div className="home-text-container">
             <span className="home-intro-title">Welcome to Rec|Creation!</span>
             <span className="home-intro-text">
-              Looking for ideas? Want to host an event?<br/>
-              Find it all here. Have fun and meet new people! (proper marketing
-              intro needed
+              Looking for ideas? Want to host an event?
+              <br />
+              Find it all here. Have fun and meet new people!
             </span>
           </div>
         </div>
